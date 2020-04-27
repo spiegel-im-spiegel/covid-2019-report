@@ -1,2 +1,1 @@
-# covid-2019-report
-Confirmed COVID-2019 Cases in Japan
+# 日本における COVID-2019 発症確認者のレポート
