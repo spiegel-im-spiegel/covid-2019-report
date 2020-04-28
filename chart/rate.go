@@ -84,7 +84,7 @@ func LineChartFatalityRate(rps report.Reports, start values.Date, outPath string
 
 	//labels of X
 	p.NominalX(labelX...)
-	p.X.Label.Text = "Report date"
+	p.X.Label.Text = "Date of report"
 	//p.X.Padding = 0
 	p.X.Tick.Label.Rotation = math.Pi / 2.5
 	p.X.Tick.Label.XAlign = draw.XRight
