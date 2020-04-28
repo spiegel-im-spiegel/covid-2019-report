@@ -13,8 +13,8 @@ type Report interface {
 	Date() values.Date
 	TotalCases() int64
 	TotalDeaths() int64
-	CasesByDate() int64
-	DeathsByDate() int64
+	CasesByDay() int64
+	DeathsByDay() int64
 	FatalityRate() float64
 }
 
@@ -39,11 +39,11 @@ func (r *report) TotalDeaths() int64 {
 	return r.today.Deaths
 }
 
-func (r *report) CasesByDate() int64 {
+func (r *report) CasesByDay() int64 {
 	return r.today.Total - r.yesterday.Total
 }
 
-func (r *report) DeathsByDate() int64 {
+func (r *report) DeathsByDay() int64 {
 	return r.today.Deaths - r.yesterday.Deaths
 }
 

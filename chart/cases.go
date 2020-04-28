@@ -24,8 +24,8 @@ type newCasesData struct {
 func newNewCasesData(rp report.Report) newCasesData {
 	return newCasesData{
 		date:      rp.Date().String(),
-		newCases:  (float64)(rp.CasesByDate()),
-		newDeaths: (float64)(rp.DeathsByDate()),
+		newCases:  (float64)(rp.CasesByDay()),
+		newDeaths: (float64)(rp.DeathsByDay()),
 	}
 }
 
