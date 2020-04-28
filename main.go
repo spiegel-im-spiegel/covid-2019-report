@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/spiegel-im-spiegel/covid-2019-report/chart"
 	"github.com/spiegel-im-spiegel/covid-2019-report/report"
+	"github.com/spiegel-im-spiegel/covid-2019-report/values"
 )
 
 func main() {
@@ -13,14 +15,25 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-
-	for {
-		rp, err := rps.Next()
-		if err != nil {
-			break
-		}
-		fmt.Println(rp.Date(), rp.TotalCases(), rp.TotalDeaths(), rp.CasesByDate(), rp.DeathsByDate(), rp.FatalityRate())
+	start, err := values.DateFrom("2020-03-11")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%+v\n", err)
+		return
 	}
+
+	chart.BarChartNewCases(rps, start, "./covid-2019-cases-in-japan.png")
+	//
+	// for {
+	// 	rp, err := rps.Next()
+	// 	if err != nil {
+	// 		if errors.Is(err, ecode.ErrNoData) {
+	// 			break
+	// 		}
+	// 		fmt.Fprintf(os.Stderr, "%+v\n", err)
+	// 		return
+	// 	}
+	// 	fmt.Println(rp.Date(), rp.TotalCases(), rp.TotalDeaths(), rp.CasesByDate(), rp.DeathsByDate(), rp.FatalityRate())
+	// }
 
 }
 

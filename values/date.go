@@ -67,6 +67,27 @@ func (t Date) String() string {
 	return t.Format("2006-01-02")
 }
 
+//Equal reports whether t and dt represent the same time instant.
+func (t Date) Equal(dt Date) bool {
+	tc := t.Time.UTC()
+	dtc := dt.Time.UTC()
+	return tc.Year() == dtc.Year() && tc.Month() == dtc.Month() && tc.Day() == dtc.Day()
+}
+
+//Before reports whether the Date instant t is before dt.
+func (t Date) Before(dt Date) bool {
+	tc := t.Time.UTC()
+	dtc := dt.Time.UTC()
+	return !t.Equal(dt) && tc.Before(dtc)
+}
+
+//After reports whether the Date instant t is after dt.
+func (t Date) After(dt Date) bool {
+	tc := t.Time.UTC()
+	dtc := dt.Time.UTC()
+	return !t.Equal(dt) && tc.After(dtc)
+}
+
 /* Copyright 2020 Spiegel
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

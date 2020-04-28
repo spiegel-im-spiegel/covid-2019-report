@@ -70,7 +70,7 @@ func New(cs []cases.Cases) Reports {
 		return &reports{index: -1, data: []cases.Cases{}}
 	}
 	sort.Slice(cs, func(i, j int) bool {
-		return cs[i].Date.Before(cs[j].Date.Time)
+		return cs[i].Date.Before(cs[j].Date)
 	})
 	return &reports{index: -1, data: cs}
 }
@@ -128,7 +128,7 @@ func (rs *reports) SearchByDate(dt values.Date) (Report, error) {
 		return nil, errs.Wrap(ecode.ErrNoData, "", errs.WithContext("reports.Len", rs.Len()))
 	}
 	for i, c := range rs.data {
-		if c.Date.Year() == dt.Year() && c.Date.Month() == dt.Month() && c.Date.Day() == dt.Day() {
+		if !c.Date.Before(dt) {
 			rs.index = i
 			return rs.get()
 		}

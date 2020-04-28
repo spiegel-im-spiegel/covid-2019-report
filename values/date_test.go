@@ -54,6 +54,20 @@ func TestUnmarshalErr(t *testing.T) {
 	}
 }
 
+func TestEqual(t *testing.T) {
+	dt1, _ := DateFrom("2020-03-31")
+	dt2, _ := DateFrom("2020-04-01")
+	if dt1.Equal(dt2) {
+		t.Error("Date.Equal() is true, want false.")
+	}
+	if !dt1.Before(dt2) {
+		t.Error("Date.Before() is false, want true.")
+	}
+	if dt1.After(dt2) {
+		t.Error("Date.After() is true, want false.")
+	}
+}
+
 /* Copyright 2020 Spiegel
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
