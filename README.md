@@ -4,7 +4,7 @@ SARS-CoV-2 ウイルスによると見られる症状（COVID-2019）につい�
 
 ![Confirmed COVID-2019 Cases in Japan](./covid-2019-cases-in-japan.png)
 
-以下は日本における致命率（致死率ではありません）の推移です。
+以下は日本における致命率（死亡率ではありません）の推移です。
 
 ![Confirmed COVID-2019 Fatality Rate in Japan](./covid-2019-fatality-rate-in-japan.png)
 
