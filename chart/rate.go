@@ -91,13 +91,13 @@ func LineChartFatalityRate(rps report.Reports, start values.Date, outPath string
 	p.X.Tick.Label.YAlign = draw.YCenter
 
 	//labels of Y
-	p.Y.Label.Text = "Fatality rate"
+	p.Y.Label.Text = "Fatality rate (%)"
 	p.Y.Padding = 5
 	p.Y.Min = 0
 	p.Y.Max = 5.0
 
 	//legend
-	p.Legend.Add("Fatality rate by day", line)
+	p.Legend.Add("Fatality rate", line)
 	p.Legend.Top = true   //top
 	p.Legend.Left = false //right
 	p.Legend.XOffs = 0
