@@ -20,21 +20,14 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-
-	chart.BarChartNewCases(rps, start, "./covid-2019-cases-in-japan.png")
-	//
-	// for {
-	// 	rp, err := rps.Next()
-	// 	if err != nil {
-	// 		if errors.Is(err, ecode.ErrNoData) {
-	// 			break
-	// 		}
-	// 		fmt.Fprintf(os.Stderr, "%+v\n", err)
-	// 		return
-	// 	}
-	// 	fmt.Println(rp.Date(), rp.TotalCases(), rp.TotalDeaths(), rp.CasesByDate(), rp.DeathsByDate(), rp.FatalityRate())
-	// }
-
+	if err := chart.BarChartNewCases(rps, start, "./covid-2019-cases-in-japan.png"); err != nil {
+		fmt.Fprintf(os.Stderr, "%+v\n", err)
+		return
+	}
+	if err := chart.LineChartFatalityRate(rps, start, "./covid-2019-fatality-rate-in-japan.png"); err != nil {
+		fmt.Fprintf(os.Stderr, "%+v\n", err)
+		return
+	}
 }
 
 /* Copyright 2020 Spiegel

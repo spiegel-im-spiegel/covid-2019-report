@@ -76,16 +76,12 @@ func (t Date) Equal(dt Date) bool {
 
 //Before reports whether the Date instant t is before dt.
 func (t Date) Before(dt Date) bool {
-	tc := t.Time.UTC()
-	dtc := dt.Time.UTC()
-	return !t.Equal(dt) && tc.Before(dtc)
+	return !t.Equal(dt) && t.Time.Before(dt.Time)
 }
 
 //After reports whether the Date instant t is after dt.
 func (t Date) After(dt Date) bool {
-	tc := t.Time.UTC()
-	dtc := dt.Time.UTC()
-	return !t.Equal(dt) && tc.After(dtc)
+	return !t.Equal(dt) && t.Time.After(dt.Time)
 }
 
 /* Copyright 2020 Spiegel
