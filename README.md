@@ -2,7 +2,7 @@
 
 SARS-CoV-2 ウイルスによると見られる症状（COVID-2019）について整理しています。 WHO がパンデミック宣言を行った 2020-03-11 以降，日本国内での新規発症確認者をグラフ化したものです。
 
-![Confirmed COVID-2019 Cases in Japan](./covid-2019-cases-in-japan.png)
+![Confirmed COVID-2019 Cases in Japan](./covid-2019-new-cases-in-japan.png)
 
 以下は日本における致命率（死亡率ではありません）の推移です。
 

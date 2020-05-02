@@ -5,8 +5,15 @@ import (
 	"os"
 
 	"github.com/spiegel-im-spiegel/covid-2019-report/chart"
+	"github.com/spiegel-im-spiegel/covid-2019-report/imgutil"
 	"github.com/spiegel-im-spiegel/covid-2019-report/report"
 	"github.com/spiegel-im-spiegel/covid-2019-report/values"
+)
+
+const (
+	casesFile        = "./covid-2019-new-cases-in-japan.png"
+	fatalityRateFile = "./covid-2019-fatality-rate-in-japan.png"
+	allFile          = "./covid-2019-cases-in-japan.png"
 )
 
 func main() {
@@ -20,11 +27,16 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	if err := chart.BarChartNewCases(rps, start, "./covid-2019-cases-in-japan.png"); err != nil {
+
+	if err := chart.BarChartNewCases(rps, start, casesFile); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	if err := chart.LineChartFatalityRate(rps, start, "./covid-2019-fatality-rate-in-japan.png"); err != nil {
+	if err := chart.LineChartFatalityRate(rps, start, fatalityRateFile); err != nil {
+		fmt.Fprintf(os.Stderr, "%+v\n", err)
+		return
+	}
+	if err := imgutil.ConcatImageFiles(allFile, []string{casesFile, fatalityRateFile}); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
