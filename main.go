@@ -36,7 +36,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	if err := imgutil.ConcatImageFiles(allFile, []string{casesFile, fatalityRateFile}); err != nil {
+	if err := imgutil.ConcatImageFiles(allFile, casesFile, fatalityRateFile); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}

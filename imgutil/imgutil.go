@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func ConcatImageFiles(dstPath string, srcPaths []string) error {
+func ConcatImageFiles(dstPath string, srcPaths ...string) error {
 	srcImages := []image.Image{}
 	width, height := 0, 0
 	for _, path := range srcPaths {
@@ -21,12 +21,17 @@ func ConcatImageFiles(dstPath string, srcPaths []string) error {
 		srcImages = append(srcImages, img)
 	}
 
-	out := image.NewRGBA(image.Rect(0, 0, width, height))
+	dstImage := image.NewRGBA(image.Rect(0, 0, width, height))
 	offset := 0
 	for _, img := range srcImages {
 		srcRect := img.Bounds()
-		rect := image.Rect(0, offset, srcRect.Dx(), offset+srcRect.Dy())
-		draw.Draw(out, rect, img, image.Point{0, 0}, draw.Over)
+		draw.Draw(
+			dstImage,
+			image.Rect(0, offset, srcRect.Dx(), offset+srcRect.Dy()),
+			img,
+			image.Point{0, 0},
+			draw.Over,
+		)
 		offset += srcRect.Dy()
 	}
 
@@ -35,7 +40,7 @@ func ConcatImageFiles(dstPath string, srcPaths []string) error {
 		return err
 	}
 	defer file.Close()
-	if err := png.Encode(file, out); err != nil {
+	if err := png.Encode(file, dstImage); err != nil {
 		return err
 	}
 	return nil
