@@ -115,8 +115,8 @@ func BarChartNewCases(rps report.Reports, start values.Date, outPath string) err
 	//legend
 	p.Legend.Add("New confirmed cases by day", bar1)
 	p.Legend.Add("New deaths by day", bar2)
-	p.Legend.Top = true   //top
-	p.Legend.Left = false //right
+	p.Legend.Top = true  //top
+	p.Legend.Left = true //left
 	p.Legend.XOffs = 0
 	p.Legend.YOffs = -10
 
