@@ -29,7 +29,7 @@ func newNewCasesData(rp report.Report) newCasesData {
 	}
 }
 
-func importNewCasesData(rps report.Reports, start values.Date) ([]newCasesData, error) {
+func importNewCasesData(rps report.Reports, start, end values.Date) ([]newCasesData, error) {
 	var rp report.Report
 	var err error
 	if start.IsZero() {
@@ -38,7 +38,7 @@ func importNewCasesData(rps report.Reports, start values.Date) ([]newCasesData, 
 		rp, err = rps.SearchByDate(start)
 	}
 	if err != nil {
-		return nil, errs.Wrap(err, "", errs.WithContext("start", start))
+		return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
 	}
 	data := []newCasesData{newNewCasesData(rp)}
 	for {
@@ -47,26 +47,40 @@ func importNewCasesData(rps report.Reports, start values.Date) ([]newCasesData, 
 			if errors.Is(err, ecode.ErrNoData) {
 				break
 			}
-			return nil, errs.Wrap(err, "", errs.WithContext("start", start))
+			return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
+		}
+		if !end.IsZero() && rp.Date().After(end) {
+			break
 		}
 		data = append(data, newNewCasesData(rp))
 	}
 	return data, nil
 }
 
-func BarChartNewCases(rps report.Reports, start values.Date, outPath string) error {
-	data, err := importNewCasesData(rps, start)
+func max(l, r float64) float64 {
+	if l > r {
+		return l
+	}
+	return r
+}
+
+func BarChartNewCases(rps report.Reports, start, end values.Date, outPath string) error {
+	data, err := importNewCasesData(rps, start, end)
 	if err != nil {
 		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	labelX := []string{}
 	dataY1 := plotter.Values{}
 	dataY2 := plotter.Values{}
+	maxCases := 0.0
 	for _, d := range data {
 		labelX = append(labelX, d.date)
 		dataY1 = append(dataY1, d.newCases)
+		maxCases = max(maxCases, d.newCases)
 		dataY2 = append(dataY2, d.newDeaths)
+		maxCases = max(maxCases, d.newDeaths)
 	}
+	maxCases = (float64)((((int)(maxCases) / 100) + 1) * 100)
 
 	//default font
 	plot.DefaultFont = "Helvetica"
@@ -110,7 +124,7 @@ func BarChartNewCases(rps report.Reports, start values.Date, outPath string) err
 	p.Y.Label.Text = "Confirmed cases"
 	p.Y.Padding = 5
 	p.Y.Min = 0
-	p.Y.Max = 800
+	p.Y.Max = maxCases
 
 	//legend
 	p.Legend.Add("New confirmed cases by day", bar1)
@@ -124,7 +138,7 @@ func BarChartNewCases(rps report.Reports, start values.Date, outPath string) err
 	p.Title.Text = "Confirmed COVID-2019 Cases in Japan"
 
 	//output image
-	if err := p.Save(20.0*(vg.Length)(len(data)), 15*vg.Centimeter, outPath); err != nil {
+	if err := p.Save(20.0*(vg.Length)(len(data)+2), 15*vg.Centimeter, outPath); err != nil {
 		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	return nil

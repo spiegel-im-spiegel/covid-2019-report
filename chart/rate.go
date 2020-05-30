@@ -27,7 +27,7 @@ func newFatalityRateData(rp report.Report) fatalityRateData {
 	}
 }
 
-func importFatalityRateData(rps report.Reports, start values.Date) ([]fatalityRateData, error) {
+func importFatalityRateData(rps report.Reports, start, end values.Date) ([]fatalityRateData, error) {
 	var rp report.Report
 	var err error
 	if start.IsZero() {
@@ -36,7 +36,7 @@ func importFatalityRateData(rps report.Reports, start values.Date) ([]fatalityRa
 		rp, err = rps.SearchByDate(start)
 	}
 	if err != nil {
-		return nil, errs.Wrap(err, "", errs.WithContext("start", start))
+		return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
 	}
 	data := []fatalityRateData{newFatalityRateData(rp)}
 	for {
@@ -45,15 +45,18 @@ func importFatalityRateData(rps report.Reports, start values.Date) ([]fatalityRa
 			if errors.Is(err, ecode.ErrNoData) {
 				break
 			}
-			return nil, errs.Wrap(err, "", errs.WithContext("start", start))
+			return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
+		}
+		if !end.IsZero() && rp.Date().After(end) {
+			break
 		}
 		data = append(data, newFatalityRateData(rp))
 	}
 	return data, nil
 }
 
-func LineChartFatalityRate(rps report.Reports, start values.Date, outPath string) error {
-	data, err := importFatalityRateData(rps, start)
+func LineChartFatalityRate(rps report.Reports, start, end values.Date, outPath string) error {
+	data, err := importFatalityRateData(rps, start, end)
 	if err != nil {
 		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
@@ -107,7 +110,7 @@ func LineChartFatalityRate(rps report.Reports, start values.Date, outPath string
 	p.Title.Text = "COVID-2019 Fatality Rate in Japan"
 
 	//output image
-	if err := p.Save(20.0*(vg.Length)(len(data)), 15*vg.Centimeter, outPath); err != nil {
+	if err := p.Save(20.0*(vg.Length)(len(data)+2), 15*vg.Centimeter, outPath); err != nil {
 		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	return nil
