@@ -14,6 +14,7 @@ type Report interface {
 	TotalCases() int64
 	TotalDeaths() int64
 	CasesByDay() int64
+	CasesByDayTokyo() int64
 	DeathsByDay() int64
 	FatalityRate() float64
 }
@@ -41,6 +42,10 @@ func (r *report) TotalDeaths() int64 {
 
 func (r *report) CasesByDay() int64 {
 	return r.today.Total - r.yesterday.Total
+}
+
+func (r *report) CasesByDayTokyo() int64 {
+	return r.today.NewsTokyo
 }
 
 func (r *report) DeathsByDay() int64 {

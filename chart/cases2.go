@@ -15,21 +15,23 @@ import (
 	"gonum.org/v1/plot/vg/draw"
 )
 
-type newCasesData struct {
-	date      string
-	newCases  float64
-	newDeaths float64
+type newCasesData2 struct {
+	date          string
+	newCases      float64
+	newCasesTokyo float64
+	newDeaths     float64
 }
 
-func newNewCasesData(rp report.Report) newCasesData {
-	return newCasesData{
-		date:      rp.Date().String(),
-		newCases:  (float64)(rp.CasesByDay()),
-		newDeaths: (float64)(rp.DeathsByDay()),
+func newNewCasesData2(rp report.Report) newCasesData2 {
+	return newCasesData2{
+		date:          rp.Date().String(),
+		newCases:      (float64)(rp.CasesByDay()),
+		newCasesTokyo: (float64)(rp.CasesByDayTokyo()),
+		newDeaths:     (float64)(rp.DeathsByDay()),
 	}
 }
 
-func importNewCasesData(rps report.Reports, start, end values.Date) ([]newCasesData, error) {
+func importNewCasesData2(rps report.Reports, start, end values.Date) ([]newCasesData2, error) {
 	var rp report.Report
 	var err error
 	if start.IsZero() {
@@ -40,7 +42,7 @@ func importNewCasesData(rps report.Reports, start, end values.Date) ([]newCasesD
 	if err != nil {
 		return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
 	}
-	data := []newCasesData{newNewCasesData(rp)}
+	data := []newCasesData2{newNewCasesData2(rp)}
 	for {
 		rp, err := rps.Next()
 		if err != nil {
@@ -52,24 +54,27 @@ func importNewCasesData(rps report.Reports, start, end values.Date) ([]newCasesD
 		if !end.IsZero() && rp.Date().After(end) {
 			break
 		}
-		data = append(data, newNewCasesData(rp))
+		data = append(data, newNewCasesData2(rp))
 	}
 	return data, nil
 }
 
-func BarChartNewCases(rps report.Reports, start, end values.Date, outPath string) error {
-	data, err := importNewCasesData(rps, start, end)
+func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath string) error {
+	data, err := importNewCasesData2(rps, start, end)
 	if err != nil {
 		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	labelX := []string{}
 	dataY1 := plotter.Values{}
+	dataY1b := plotter.Values{}
 	dataY2 := plotter.Values{}
 	maxCases := 0.0
 	for _, d := range data {
 		labelX = append(labelX, d.date)
 		dataY1 = append(dataY1, d.newCases)
 		maxCases = max(maxCases, d.newCases)
+		dataY1b = append(dataY1b, d.newCasesTokyo)
+		maxCases = max(maxCases, d.newCasesTokyo)
 		dataY2 = append(dataY2, d.newDeaths)
 		maxCases = max(maxCases, d.newDeaths)
 	}
@@ -95,6 +100,17 @@ func BarChartNewCases(rps report.Reports, start, end values.Date, outPath string
 	bar1.Offset = -2
 	bar1.Horizontal = false
 	p.Add(bar1)
+
+	bar1b, err := plotter.NewBarChart(dataY1b, vg.Points(10))
+	if err != nil {
+		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+	}
+	bar1b.LineStyle.Width = vg.Length(0)
+	bar1b.Color = plotutil.Color(3)
+	bar1b.Offset = 0
+	bar1b.Horizontal = false
+	p.Add(bar1b)
+
 	bar2, err := plotter.NewBarChart(dataY2, vg.Points(10))
 	if err != nil {
 		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
@@ -121,6 +137,7 @@ func BarChartNewCases(rps report.Reports, start, end values.Date, outPath string
 
 	//legend
 	p.Legend.Add("New confirmed cases by day", bar1)
+	p.Legend.Add("New confirmed cases by day in Tokyo", bar1b)
 	p.Legend.Add("New deaths by day", bar2)
 	p.Legend.Top = true  //top
 	p.Legend.Left = true //left
@@ -136,18 +153,3 @@ func BarChartNewCases(rps report.Reports, start, end values.Date, outPath string
 	}
 	return nil
 }
-
-/* Copyright 2020 Spiegel
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * 	http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */

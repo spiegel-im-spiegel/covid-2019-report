@@ -8,9 +8,10 @@ import (
 )
 
 type Cases struct {
-	Date   values.Date
-	Total  int64 `json:"TotalConfirmedCases"`
-	Deaths int64 `json:"TotalDeaths"`
+	Date      values.Date
+	Total     int64 `json:"TotalConfirmedCases"`
+	Deaths    int64 `json:"TotalDeaths"`
+	NewsTokyo int64 `json:"NewConfirmedCasesInTokyo"`
 }
 
 func New(date, total, deaths string) (Cases, error) {
@@ -36,7 +37,12 @@ func New(date, total, deaths string) (Cases, error) {
 	return c, err
 }
 
-func (c Cases) FatalityRate() float64 {
+func (c *Cases) SetNewTokyo(ct int64) *Cases {
+	c.NewsTokyo = ct
+	return c
+}
+
+func (c *Cases) FatalityRate() float64 {
 	if c.Total == 0 {
 		return 0.0
 	}

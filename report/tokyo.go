@@ -4,37 +4,20 @@ import (
 	"encoding/csv"
 	"io"
 
-	"github.com/spiegel-im-spiegel/covid-2019-report/cases"
 	"github.com/spiegel-im-spiegel/covid-2019-report/ecode"
+	"github.com/spiegel-im-spiegel/covid-2019-report/values"
 	"github.com/spiegel-im-spiegel/errs"
 )
 
-func ImportCSV(readerJp, readerTokyo io.Reader) (Reports, error) {
-	cs, err := importCSV(readerJp)
-	if err != nil {
-		return nil, err
-	}
-	csTokyo, err := importTokyoCSV(readerTokyo)
-	if err != nil {
-		return nil, err
-	}
+type casesInTokyo map[string]int64
 
-	for i := 0; i < len(cs); i++ {
-		if ct, ok := csTokyo[cs[i].Date.String()]; ok {
-			//fmt.Printf("%v: %v\n", cs[i].Date, ct)
-			cs[i].NewsTokyo = ct
-		}
-	}
-	return New(cs), nil
-}
-
-func importCSV(r io.Reader) ([]cases.Cases, error) {
+func importTokyoCSV(r io.Reader) (casesInTokyo, error) {
 	cr := csv.NewReader(r)
 	cr.Comma = ','
 	cr.LazyQuotes = true       // a quote may appear in an unquoted field and a non-doubled quote may appear in a quoted field.
 	cr.TrimLeadingSpace = true // leading
 
-	cs := make([]cases.Cases, 0, 128)
+	cts := casesInTokyo{}
 	header := true
 	for {
 		elms, err := cr.Read()
@@ -44,20 +27,26 @@ func importCSV(r io.Reader) ([]cases.Cases, error) {
 			}
 			return nil, errs.Wrap(err, "")
 		}
-		if len(elms) < 4 {
+		if len(elms) < 9 {
 			return nil, errs.Wrap(ecode.ErrInvalidRecord, "", errs.WithContext("record", elms))
 		}
 		if !header {
-			c, err := cases.New(elms[1], elms[2], elms[3])
-			if err != nil {
-				return nil, errs.Wrap(err, "")
+			area := elms[2]                     //都道府県
+			dt, err := values.DateFrom(elms[4]) //公表_年月日
+			if area != "東京都" || err != nil {
+				continue
 			}
-			cs = append(cs, c)
+			if ct, ok := cts[dt.String()]; ok {
+				ct++
+				cts[dt.String()] = ct
+			} else {
+				cts[dt.String()] = 1
+			}
 		} else {
 			header = false
 		}
 	}
-	return cs, nil
+	return cts, nil
 }
 
 /* Copyright 2020 Spiegel

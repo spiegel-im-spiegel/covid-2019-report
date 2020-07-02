@@ -21,7 +21,26 @@ const (
 )
 
 func main() {
-	rps, err := report.ImportCSV(os.Stdin)
+	if len(os.Args) < 3 {
+		fmt.Fprintln(os.Stderr, os.ErrInvalid)
+		return
+	}
+
+	csvFile1, err := os.Open(os.Args[1])
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%+v\n", err)
+		return
+	}
+	defer csvFile1.Close()
+
+	csvFile2, err := os.Open(os.Args[2])
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%+v\n", err)
+		return
+	}
+	defer csvFile2.Close()
+
+	rps, err := report.ImportCSV(csvFile1, csvFile2)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
@@ -57,7 +76,7 @@ func main() {
 	}
 	end = values.NewDate(time.Time{})
 
-	if err := chart.BarChartNewCases(rps, start, end, casesFile2); err != nil {
+	if err := chart.BarChartNewCases2(rps, start, end, casesFile2); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
