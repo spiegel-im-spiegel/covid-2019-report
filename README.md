@@ -22,3 +22,16 @@ SARS-CoV-2 ウイルスによると見られる症状（COVID-2019）につい�
 参考までに WHO がパンデミック宣言を行った 2020-03-11 から緊急事態が解除された 2020-05-25 までの新規発症確認者の推移を挙げておきます。最初の棒グラフとは縦軸のスケールが異なるので注意してください。
 
 ![Confirmed COVID-2019 Cases in Japan](./covid-2019-new-cases-in-japan.png)
+
+## COVID-2019 関連のリンク集
+
+- [Flatten the curve | These guidelines are intended to help Flatten the Curve with the COVID19 outbreak, to help limit spread and reduce the load on hospitals and other healthcare.](https://www.flattenthecurve.com/)
+    - [ブログ: コロナウイルス(COVID-19)へのアドバイス](https://okuranagaimo.blogspot.com/2020/03/covid-19_11.html)
+- [We're in for 2 months - foobuzz](https://foobuzz.github.io/covid19/)
+    - [ブログ: 私たちには2ヶ月必要です](https://okuranagaimo.blogspot.com/2020/04/2.html)
+- [Mysterious Heart Damage, Not Just Lung Troubles, Befalling COVID-19 Patients | Kaiser Health News](https://khn.org/news/mysterious-heart-damage-not-just-lung-troubles-befalling-covid-19-patients/)
+    - [ブログ: COVID-19患者に降りかかる不思議な心臓の損傷](https://okuranagaimo.blogspot.com/2020/04/covid-19_7.html)
+- [COVID-19: The T Cell Story - Articles](https://berthub.eu/articles/posts/covid-19-t-cells/)
+    - [ブログ: COVID-19: T細胞の話](https://okuranagaimo.blogspot.com/2020/06/covid-19-t.html)
+- [2020年7月1日ニュース「国内初のコロナワクチンの治験を開始 創薬ベンチャーの『アンジェス』」 | SciencePortal](https://scienceportal.jst.go.jp/news/newsflash_review/newsflash/2020/07/20200701_01.html)
+- [MIT Tech Review: 新型コロナとインフルの似ているところ、違うところ＝WHO報告](https://www.technologyreview.jp/nl/these-are-6-of-the-main-differences-between-flu-and-coronavirus/)
