@@ -66,14 +66,14 @@ func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath strin
 	}
 	labelX := []string{}
 	dataY1 := plotter.Values{}
-	dataY1b := plotter.Values{}
+	dataY1b := plotter.XYs{}
 	dataY2 := plotter.Values{}
 	maxCases := 0.0
-	for _, d := range data {
+	for i, d := range data {
 		labelX = append(labelX, d.date)
 		dataY1 = append(dataY1, d.newCases)
 		maxCases = max(maxCases, d.newCases)
-		dataY1b = append(dataY1b, d.newCasesTokyo)
+		dataY1b = append(dataY1b, plotter.XY{X: (float64)(i), Y: d.newCasesTokyo})
 		maxCases = max(maxCases, d.newCasesTokyo)
 		dataY2 = append(dataY2, d.newDeaths)
 		maxCases = max(maxCases, d.newDeaths)
@@ -101,15 +101,13 @@ func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath strin
 	bar1.Horizontal = false
 	p.Add(bar1)
 
-	bar1b, err := plotter.NewBarChart(dataY1b, vg.Points(10))
+	//new line chart
+	line, err := plotter.NewLine(dataY1b)
 	if err != nil {
 		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
-	bar1b.LineStyle.Width = vg.Length(0)
-	bar1b.Color = plotutil.Color(3)
-	bar1b.Offset = 0
-	bar1b.Horizontal = false
-	p.Add(bar1b)
+	line.Color = plotutil.Color(4)
+	p.Add(line)
 
 	bar2, err := plotter.NewBarChart(dataY2, vg.Points(10))
 	if err != nil {
@@ -137,7 +135,7 @@ func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath strin
 
 	//legend
 	p.Legend.Add("New confirmed cases by day", bar1)
-	p.Legend.Add("New confirmed cases by day in Tokyo", bar1b)
+	p.Legend.Add("New positive PCR test results by day in Tokyo", line)
 	p.Legend.Add("New deaths by day", bar2)
 	p.Legend.Top = true  //top
 	p.Legend.Left = true //left
