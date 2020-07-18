@@ -7,17 +7,6 @@
 
 データは以下の Web ページから手作業で抜粋しています。
 
-- [松江市:暮らしのガイド:松江市内での発生状況](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/coronahasseijoukyou.html)
-
-データの一貫性を保つため 2020-04-14 より前の検査実施分は含めていません。
-2020-04-14 以前に公表された感染・発症件数は以下のとおりです。
-
-| 公表日     | 件数 |
-| ---------- | ----:|
-| 2020-04-09 |    1 |
-| 2020-04-10 |    1 |
-| 2020-04-11 |    4 |
-| 2020-04-11 |    4 |
-| 2020-04-12 |    1 |
-| 2020-04-13 |    1 |
-| 2020-04-14 |    2 |
+- [松江市:暮らしのガイド:【まとめページ】新型コロナウイルス感染症について](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/)
+    - [松江市:暮らしのガイド:検査件数](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/coronapcrkekka.html)
+    - [松江市:暮らしのガイド:松江市内の発生状況](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/coronahasseijoukyou.html)
