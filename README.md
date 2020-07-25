@@ -35,3 +35,5 @@ SARS-CoV-2 ウイルスによると見られる症状（COVID-2019）につい�
     - [ブログ: COVID-19: T細胞の話](https://okuranagaimo.blogspot.com/2020/06/covid-19-t.html)
 - [2020年7月1日ニュース「国内初のコロナワクチンの治験を開始 創薬ベンチャーの『アンジェス』」 | SciencePortal](https://scienceportal.jst.go.jp/news/newsflash_review/newsflash/2020/07/20200701_01.html)
 - [MIT Tech Review: 新型コロナとインフルの似ているところ、違うところ＝WHO報告](https://www.technologyreview.jp/nl/these-are-6-of-the-main-differences-between-flu-and-coronavirus/)
+- [New Data on T Cells and the Coronavirus  |  In the Pipeline](https://blogs.sciencemag.org/pipeline/archives/2020/07/15/new-data-on-t-cells-and-the-coronavirus)
+    - [ブログ: T細胞とコロナウイルスに関する新しいデータ](https://okuranagaimo.blogspot.com/2020/07/t.html)
