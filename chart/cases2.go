@@ -146,7 +146,7 @@ func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath strin
 	p.Title.Text = "Confirmed COVID-2019 Cases in Japan"
 
 	//output image
-	if err := p.Save(20.0*(vg.Length)(len(data)+2), 15*vg.Centimeter, outPath); err != nil {
+	if err := p.Save(20.0*(vg.Length)(len(data)+2), 20*vg.Centimeter, outPath); err != nil {
 		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	return nil
