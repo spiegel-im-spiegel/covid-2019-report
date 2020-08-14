@@ -18,19 +18,19 @@ func New(date, total, deaths string) (Cases, error) {
 	c := Cases{}
 	dt, err := values.DateFrom(date)
 	if err != nil {
-		return c, errs.Wrap(err, "Invalid data", errs.WithContext("date", date))
+		return c, errs.New("Invalid data", errs.WithCause(err), errs.WithContext("date", date))
 	}
 	c.Date = dt
 
 	t, err := strconv.ParseInt(total, 10, 64)
 	if err != nil {
-		return c, errs.Wrap(err, "Invalid data", errs.WithContext("total", total))
+		return c, errs.New("Invalid data", errs.WithCause(err), errs.WithContext("total", total))
 	}
 	c.Total = t
 
 	d, err := strconv.ParseInt(deaths, 10, 64)
 	if err != nil {
-		return c, errs.Wrap(err, "Invalid data", errs.WithContext("deaths", deaths))
+		return c, errs.New("Invalid data", errs.WithCause(err), errs.WithContext("deaths", deaths))
 	}
 	c.Deaths = d
 

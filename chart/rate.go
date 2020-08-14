@@ -36,7 +36,7 @@ func importFatalityRateData(rps report.Reports, start, end values.Date) ([]fatal
 		rp, err = rps.SearchByDate(start)
 	}
 	if err != nil {
-		return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
+		return nil, errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("end", end))
 	}
 	data := []fatalityRateData{newFatalityRateData(rp)}
 	for {
@@ -45,7 +45,7 @@ func importFatalityRateData(rps report.Reports, start, end values.Date) ([]fatal
 			if errors.Is(err, ecode.ErrNoData) {
 				break
 			}
-			return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
+			return nil, errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("end", end))
 		}
 		if !end.IsZero() && rp.Date().After(end) {
 			break
@@ -58,7 +58,7 @@ func importFatalityRateData(rps report.Reports, start, end values.Date) ([]fatal
 func LineChartFatalityRate(rps report.Reports, start, end values.Date, outPath string) error {
 	data, err := importFatalityRateData(rps, start, end)
 	if err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	labelX := []string{}
 	dataY := plotter.XYs{}
@@ -74,13 +74,13 @@ func LineChartFatalityRate(rps report.Reports, start, end values.Date, outPath s
 	//new plot
 	p, err := plot.New()
 	if err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 
 	//new line chart
 	line, err := plotter.NewLine(dataY)
 	if err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	line.Color = plotutil.Color(4)
 	p.Add(line)
@@ -111,7 +111,7 @@ func LineChartFatalityRate(rps report.Reports, start, end values.Date, outPath s
 
 	//output image
 	if err := p.Save(20.0*(vg.Length)(len(data)+2), 15*vg.Centimeter, outPath); err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	return nil
 }

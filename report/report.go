@@ -89,10 +89,10 @@ func (rs *reports) Len() int {
 
 func (rs *reports) Index(i int) (Report, error) {
 	if rs == nil {
-		return nil, errs.Wrap(ecode.ErrNullPointer, "")
+		return nil, errs.Wrap(ecode.ErrNullPointer)
 	}
 	if i < 0 {
-		return nil, errs.Wrap(ecode.ErrNoData, "", errs.WithContext("index", i))
+		return nil, errs.Wrap(ecode.ErrNoData, errs.WithContext("index", i))
 	}
 	rs.index = i
 	return rs.get()
@@ -100,7 +100,7 @@ func (rs *reports) Index(i int) (Report, error) {
 
 func (rs *reports) Next() (Report, error) {
 	if rs == nil {
-		return nil, errs.Wrap(ecode.ErrNullPointer, "")
+		return nil, errs.Wrap(ecode.ErrNullPointer)
 	}
 	rs.index++
 	return rs.get()
@@ -108,7 +108,7 @@ func (rs *reports) Next() (Report, error) {
 
 func (rs *reports) Top() (Report, error) {
 	if rs == nil {
-		return nil, errs.Wrap(ecode.ErrNullPointer, "")
+		return nil, errs.Wrap(ecode.ErrNullPointer)
 	}
 	rs.index = 0
 	return rs.get()
@@ -116,10 +116,10 @@ func (rs *reports) Top() (Report, error) {
 
 func (rs *reports) Last() (Report, error) {
 	if rs == nil {
-		return nil, errs.Wrap(ecode.ErrNullPointer, "")
+		return nil, errs.Wrap(ecode.ErrNullPointer)
 	}
 	if rs.Len() == 0 {
-		return nil, errs.Wrap(ecode.ErrNoData, "", errs.WithContext("reports.Len", rs.Len()))
+		return nil, errs.Wrap(ecode.ErrNoData, errs.WithContext("reports.Len", rs.Len()))
 	}
 	rs.index = rs.Len() - 1
 	return rs.get()
@@ -127,10 +127,10 @@ func (rs *reports) Last() (Report, error) {
 
 func (rs *reports) SearchByDate(dt values.Date) (Report, error) {
 	if rs == nil {
-		return nil, errs.Wrap(ecode.ErrNullPointer, "")
+		return nil, errs.Wrap(ecode.ErrNullPointer)
 	}
 	if rs.Len() == 0 {
-		return nil, errs.Wrap(ecode.ErrNoData, "", errs.WithContext("reports.Len", rs.Len()))
+		return nil, errs.Wrap(ecode.ErrNoData, errs.WithContext("reports.Len", rs.Len()))
 	}
 	for i, c := range rs.data {
 		if !c.Date.Before(dt) {
@@ -138,12 +138,12 @@ func (rs *reports) SearchByDate(dt values.Date) (Report, error) {
 			return rs.get()
 		}
 	}
-	return nil, errs.Wrap(ecode.ErrNoData, "", errs.WithContext("Date", dt.String()))
+	return nil, errs.Wrap(ecode.ErrNoData, errs.WithContext("Date", dt.String()))
 }
 
 func (rs *reports) get() (*report, error) {
 	if rs.index < 0 || rs.index >= rs.Len() {
-		return nil, errs.Wrap(ecode.ErrNoData, "", errs.WithContext("reports.index", rs.index))
+		return nil, errs.Wrap(ecode.ErrNoData, errs.WithContext("reports.index", rs.index))
 	}
 	if rs.index == 0 {
 		return newReport(rs.data[0], cases.Cases{}), nil

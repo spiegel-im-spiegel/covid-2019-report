@@ -42,15 +42,15 @@ func importCSV(r io.Reader) ([]cases.Cases, error) {
 			if errs.Is(err, io.EOF) {
 				break
 			}
-			return nil, errs.Wrap(err, "")
+			return nil, errs.Wrap(err)
 		}
 		if len(elms) < 4 {
-			return nil, errs.Wrap(ecode.ErrInvalidRecord, "", errs.WithContext("record", elms))
+			return nil, errs.Wrap(ecode.ErrInvalidRecord, errs.WithContext("record", elms))
 		}
 		if !header {
 			c, err := cases.New(elms[1], elms[2], elms[3])
 			if err != nil {
-				return nil, errs.Wrap(err, "")
+				return nil, errs.Wrap(err)
 			}
 			cs = append(cs, c)
 		} else {

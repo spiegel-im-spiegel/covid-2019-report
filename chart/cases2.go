@@ -40,7 +40,7 @@ func importNewCasesData2(rps report.Reports, start, end values.Date) ([]newCases
 		rp, err = rps.SearchByDate(start)
 	}
 	if err != nil {
-		return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
+		return nil, errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("end", end))
 	}
 	data := []newCasesData2{newNewCasesData2(rp)}
 	for {
@@ -49,7 +49,7 @@ func importNewCasesData2(rps report.Reports, start, end values.Date) ([]newCases
 			if errors.Is(err, ecode.ErrNoData) {
 				break
 			}
-			return nil, errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("end", end))
+			return nil, errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("end", end))
 		}
 		if !end.IsZero() && rp.Date().After(end) {
 			break
@@ -62,7 +62,7 @@ func importNewCasesData2(rps report.Reports, start, end values.Date) ([]newCases
 func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath string) error {
 	data, err := importNewCasesData2(rps, start, end)
 	if err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	labelX := []string{}
 	dataY1 := plotter.Values{}
@@ -87,13 +87,13 @@ func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath strin
 	//new plot
 	p, err := plot.New()
 	if err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 
 	//new bar chart
 	bar1, err := plotter.NewBarChart(dataY1, vg.Points(10))
 	if err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	bar1.LineStyle.Width = vg.Length(0)
 	bar1.Color = plotutil.Color(2)
@@ -104,14 +104,14 @@ func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath strin
 	//new line chart
 	line, err := plotter.NewLine(dataY1b)
 	if err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	line.Color = plotutil.Color(4)
 	p.Add(line)
 
 	bar2, err := plotter.NewBarChart(dataY2, vg.Points(10))
 	if err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	bar2.LineStyle.Width = vg.Length(0)
 	bar2.Color = plotutil.Color(6)
@@ -147,7 +147,7 @@ func BarChartNewCases2(rps report.Reports, start, end values.Date, outPath strin
 
 	//output image
 	if err := p.Save(20.0*(vg.Length)(len(data)+2), 30*vg.Centimeter, outPath); err != nil {
-		return errs.Wrap(err, "", errs.WithContext("start", start), errs.WithContext("outPath", outPath))
+		return errs.Wrap(err, errs.WithContext("start", start), errs.WithContext("outPath", outPath))
 	}
 	return nil
 }

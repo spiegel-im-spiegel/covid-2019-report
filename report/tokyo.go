@@ -25,10 +25,10 @@ func importTokyoCSV(r io.Reader) (casesInTokyo, error) {
 			if errs.Is(err, io.EOF) {
 				break
 			}
-			return nil, errs.Wrap(err, "")
+			return nil, errs.Wrap(err)
 		}
 		if len(elms) < 9 {
-			return nil, errs.Wrap(ecode.ErrInvalidRecord, "", errs.WithContext("record", elms))
+			return nil, errs.Wrap(ecode.ErrInvalidRecord, errs.WithContext("record", elms))
 		}
 		if !header {
 			area := elms[2]                     //都道府県
