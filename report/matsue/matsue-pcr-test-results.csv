@@ -1,4 +1,4 @@
-Date,Total PCR tests,Pisitive test results
+Date,Total PCR tests,Positive test results
 2020-02-21,3,0
 2020-02-22,0,0
 2020-02-23,0,0
@@ -168,3 +168,10 @@ Date,Total PCR tests,Pisitive test results
 2020-08-05,2,0
 2020-08-06,4,0
 2020-08-07,1,0
+2020-08-08,5,2
+2020-08-09,149,91
+2020-08-10,163,3
+2020-08-11,128,4
+2020-08-12,85,2
+2020-08-13,40,0
+2020-08-14,352,0
