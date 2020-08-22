@@ -1,16 +1,11 @@
 package report
 
 import (
-	"encoding/csv"
 	"io"
-
-	"github.com/spiegel-im-spiegel/covid-2019-report/cases"
-	"github.com/spiegel-im-spiegel/covid-2019-report/ecode"
-	"github.com/spiegel-im-spiegel/errs"
 )
 
 func ImportCSV(readerJp, readerTokyo io.Reader) (Reports, error) {
-	cs, err := importCSV(readerJp)
+	cs, err := importWHOCSV(readerJp)
 	if err != nil {
 		return nil, err
 	}
@@ -26,38 +21,6 @@ func ImportCSV(readerJp, readerTokyo io.Reader) (Reports, error) {
 		}
 	}
 	return New(cs), nil
-}
-
-func importCSV(r io.Reader) ([]cases.Cases, error) {
-	cr := csv.NewReader(r)
-	cr.Comma = ','
-	cr.LazyQuotes = true       // a quote may appear in an unquoted field and a non-doubled quote may appear in a quoted field.
-	cr.TrimLeadingSpace = true // leading
-
-	cs := make([]cases.Cases, 0, 128)
-	header := true
-	for {
-		elms, err := cr.Read()
-		if err != nil {
-			if errs.Is(err, io.EOF) {
-				break
-			}
-			return nil, errs.Wrap(err)
-		}
-		if len(elms) < 4 {
-			return nil, errs.Wrap(ecode.ErrInvalidRecord, errs.WithContext("record", elms))
-		}
-		if !header {
-			c, err := cases.New(elms[1], elms[2], elms[3])
-			if err != nil {
-				return nil, errs.Wrap(err)
-			}
-			cs = append(cs, c)
-		} else {
-			header = false
-		}
-	}
-	return cs, nil
 }
 
 /* Copyright 2020 Spiegel

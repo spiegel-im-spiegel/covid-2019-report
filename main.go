@@ -25,15 +25,18 @@ func main() {
 		fmt.Fprintln(os.Stderr, os.ErrInvalid)
 		return
 	}
+	whoCSV := os.Args[1]
+	tokyoCSV := os.Args[2]
+	fmt.Println("build chart by:", whoCSV, tokyoCSV)
 
-	csvFile1, err := os.Open(os.Args[1])
+	csvFile1, err := os.Open(whoCSV)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
 	defer csvFile1.Close()
 
-	csvFile2, err := os.Open(os.Args[2])
+	csvFile2, err := os.Open(tokyoCSV)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return

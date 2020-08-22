@@ -2,9 +2,13 @@
 
 SARS-CoV-2 ウイルスによると見られる症状（COVID-2019）について整理しています。
 
-以下は日本で緊急事態が解除された 2020-05-25 以降における国内の新規発症確認者をグラフ化したものです。基となるデータは [WHO の situation report](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports "COVID-19 situation reports") から手作業で抜粋しています。
+以下は日本で緊急事態が解除された 2020-05-25 以降における国内の新規発症確認者をグラフ化したものです。
 
 ![Confirmed COVID-2019 Cases in Japan](./covid-2019-new-cases-in-japan2.png)
+
+基となるデータは “[WHO Coronavirus Disease (COVID-19) Dashboard](https://covid19.who.int/)” から提供される CSV データを使っています。
+
+- [`WHO-COVID-19-global-data.csv`](https://covid19.who.int/WHO-COVID-19-global-data.csv)
 
 作成した情報はあくまで個人的な目的で作成したもので，データの正確性については保証しません（できません）し，これらを使って何かを主張するつもりもありません（私は医療関係者ではありません）ので，あらかじめご了承ください。
 
@@ -25,6 +29,7 @@ SARS-CoV-2 ウイルスによると見られる症状（COVID-2019）につい�
 
 ## COVID-2019 関連のリンク集
 
+- [Coronavirus Disease (COVID-19) Situation Reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) : Situation Reports 週単位の報告（PDF）になった模様
 - [Flatten the curve | These guidelines are intended to help Flatten the Curve with the COVID19 outbreak, to help limit spread and reduce the load on hospitals and other healthcare.](https://www.flattenthecurve.com/)
     - [ブログ: コロナウイルス(COVID-19)へのアドバイス](https://okuranagaimo.blogspot.com/2020/03/covid-19_11.html)
 - [We're in for 2 months - foobuzz](https://foobuzz.github.io/covid19/)
