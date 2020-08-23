@@ -42,3 +42,4 @@ SARS-CoV-2 ウイルスによると見られる症状（COVID-2019）につい�
 - [MIT Tech Review: 新型コロナとインフルの似ているところ、違うところ＝WHO報告](https://www.technologyreview.jp/nl/these-are-6-of-the-main-differences-between-flu-and-coronavirus/)
 - [New Data on T Cells and the Coronavirus  |  In the Pipeline](https://blogs.sciencemag.org/pipeline/archives/2020/07/15/new-data-on-t-cells-and-the-coronavirus)
     - [ブログ: T細胞とコロナウイルスに関する新しいデータ](https://okuranagaimo.blogspot.com/2020/07/t.html)
+- [COVID-19（新型コロナウイルス感染症）に関する情報とリソース - Google](https://www.google.com/intl/ja_jp/covid19/)
