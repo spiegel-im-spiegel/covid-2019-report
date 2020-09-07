@@ -2,12 +2,13 @@
 
 SARS-CoV-2 ウイルスによると見られる症状（COVID-2019）について整理しています。
 
-WHO がパンデミック宣言を行った 2020-03-11 以降における国内の新規発症確認者数と新規死者数をグラフ化したものです。
+WHO がパンデミック宣言を行った 2020-03-11 以降における国内の新規発症確認者数をグラフ化したものです。7日毎の集計になっています。
 
-![Confirmed COVID-2019 Cases in Japan](./covid-2019-histgram-in-japan.png)
+![Confirmed COVID-2019 Cases in Japan](./covid-2019-new-cases-histgram-in-japan.png)
 
-- 7日毎の集計になっています
-- 上側が新規発症確認者数，下側が新規死者数です。縦軸のスケールが異なるので注意してください
+こちらは国内の新規死者数をグラフ化したものです。同じく7日毎の集計になっています。上のグラフとは縦軸のスケールが全く異なるので注意してください。あくまで推移を見るということで...
+
+![COVID-2019 deaths in Japan](./covid-2019-new-deaths-histgram-in-japan.png)
 
 基となるデータは “[WHO Coronavirus Disease (COVID-19) Dashboard](https://covid19.who.int/)” から提供される CSV データを使っています。
 
