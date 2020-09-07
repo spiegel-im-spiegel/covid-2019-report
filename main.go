@@ -5,89 +5,47 @@ import (
 	"os"
 	"time"
 
+	"github.com/spiegel-im-spiegel/cov19data"
+	"github.com/spiegel-im-spiegel/cov19data/client"
+	"github.com/spiegel-im-spiegel/cov19data/entity"
+	"github.com/spiegel-im-spiegel/cov19data/values"
 	"github.com/spiegel-im-spiegel/covid-2019-report/chart"
 	"github.com/spiegel-im-spiegel/covid-2019-report/imgutil"
-	"github.com/spiegel-im-spiegel/covid-2019-report/report"
-	"github.com/spiegel-im-spiegel/covid-2019-report/values"
 )
 
 const (
-	casesFile         = "./covid-2019-new-cases-in-japan.png"
-	casesFile2        = "./covid-2019-new-cases-in-japan2.png"
-	fatalityRateFile  = "./covid-2019-fatality-rate-in-japan.png"
-	fatalityRateFile2 = "./covid-2019-fatality-rate-in-japan2.png"
-	allFile           = "./covid-2019-cases-in-japan.png"
-	allFile2          = "./covid-2019-cases-in-japan2.png"
+	histcasesFile  = "./covid-2019-new-cases-histgram-in-japan.png"
+	histdeathsFile = "./covid-2019-new-deaths-histgram-in-japan.png"
+	histallFile    = "./covid-2019-histgram-in-japan.png"
 )
 
 func main() {
-	if len(os.Args) < 3 {
-		fmt.Fprintln(os.Stderr, os.ErrInvalid)
-		return
-	}
-	whoCSV := os.Args[1]
-	tokyoCSV := os.Args[2]
-	fmt.Println("build chart by:", whoCSV, tokyoCSV)
-
-	csvFile1, err := os.Open(whoCSV)
+	data, err := cov19data.ImportWHOCSV(
+		client.Default(),
+		entity.WithFilterPeriod(values.NewPeriod(values.NewDate(2020, time.Month(3), 11), values.NewDateTime(time.Time{}))),
+		entity.WithCountryCode(values.CC_JP),
+		entity.WithRegionCode(values.WPRO),
+	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	defer csvFile1.Close()
-
-	csvFile2, err := os.Open(tokyoCSV)
+	h, err := cov19data.MakeHistgramWHO(data, 7)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	defer csvFile2.Close()
+	histChart := chart.ImportHistgramData(h)
 
-	rps, err := report.ImportCSV(csvFile1, csvFile2)
-	if err != nil {
+	if err := chart.BarChartHistCases(histChart, histcasesFile); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	start, err := values.DateFrom("2020-03-11")
-	if err != nil {
+	if err := chart.BarChartHistDeaths(histChart, histdeathsFile); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	end, err := values.DateFrom("2020-05-25")
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "%+v\n", err)
-		return
-	}
-
-	if err := chart.BarChartNewCases(rps, start, end, casesFile); err != nil {
-		fmt.Fprintf(os.Stderr, "%+v\n", err)
-		return
-	}
-	if err := chart.LineChartFatalityRate(rps, start, end, fatalityRateFile); err != nil {
-		fmt.Fprintf(os.Stderr, "%+v\n", err)
-		return
-	}
-	if err := imgutil.ConcatImageFiles(allFile, casesFile, fatalityRateFile); err != nil {
-		fmt.Fprintf(os.Stderr, "%+v\n", err)
-		return
-	}
-
-	start, err = values.DateFrom("2020-05-25")
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "%+v\n", err)
-		return
-	}
-	end = values.NewDate(time.Time{})
-
-	if err := chart.BarChartNewCases2(rps, start, end, casesFile2); err != nil {
-		fmt.Fprintf(os.Stderr, "%+v\n", err)
-		return
-	}
-	if err := chart.LineChartFatalityRate(rps, start, end, fatalityRateFile2); err != nil {
-		fmt.Fprintf(os.Stderr, "%+v\n", err)
-		return
-	}
-	if err := imgutil.ConcatImageFiles(allFile2, casesFile2, fatalityRateFile2); err != nil {
+	if err := imgutil.ConcatImageFiles(histallFile, histcasesFile, histdeathsFile); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
