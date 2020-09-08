@@ -3,7 +3,8 @@ package chart
 import (
 	"math"
 
-	"github.com/spiegel-im-spiegel/cov19data"
+	"github.com/spiegel-im-spiegel/cov19data/histogram"
+	"github.com/spiegel-im-spiegel/cov19data/values"
 	"github.com/spiegel-im-spiegel/errs"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
@@ -13,23 +14,31 @@ import (
 )
 
 type HistgramData struct {
-	date   string
-	cases  float64
-	deaths float64
+	period     values.Period
+	cases      float64
+	deaths     float64
+	casesTokyo float64
 }
 
-func newHistgramData(record *cov19data.HistData) HistgramData {
+func newHistgramData(record *histogram.HistData) HistgramData {
 	return HistgramData{
-		date:   record.Period.StringEnd(),
+		period: record.Period,
 		cases:  (float64)(record.Cases),
 		deaths: (float64)(record.Deaths),
 	}
 }
 
-func ImportHistgramData(hist []*cov19data.HistData) []HistgramData {
+func ImportHistgramData(global, tokyo []*histogram.HistData) []HistgramData {
 	data := []HistgramData{}
-	for _, h := range hist {
+	for _, h := range global {
 		data = append(data, newHistgramData(h))
+	}
+	for _, h := range tokyo {
+		for i := 0; i < len(data); i++ {
+			if data[i].period.Contains(h.Period.End) {
+				data[i].casesTokyo += (float64)(h.Cases)
+			}
+		}
 	}
 	return data
 }
@@ -37,11 +46,14 @@ func ImportHistgramData(hist []*cov19data.HistData) []HistgramData {
 func BarChartHistCases(data []HistgramData, outPath string) error {
 	labelX := []string{}
 	dataY := plotter.Values{}
+	dataY2 := plotter.XYs{}
 	maxCases := 0.0
-	for _, d := range data {
-		labelX = append(labelX, d.date)
+	for i, d := range data {
+		labelX = append(labelX, d.period.StringEnd())
 		dataY = append(dataY, d.cases)
 		maxCases = max(maxCases, d.cases)
+		dataY2 = append(dataY2, plotter.XY{X: (float64)(i), Y: d.casesTokyo})
+		maxCases = max(maxCases, d.casesTokyo)
 	}
 	maxCases = (float64)((((int)(maxCases) / 400) + 1) * 400)
 
@@ -66,6 +78,14 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	bar.Horizontal = false
 	p.Add(bar)
 
+	//new line chart
+	line, err := plotter.NewLine(dataY2)
+	if err != nil {
+		return errs.Wrap(err, errs.WithContext("outPath", outPath))
+	}
+	line.Color = plotutil.Color(4)
+	p.Add(line)
+
 	//labels of X
 	p.NominalX(labelX...)
 	p.X.Label.Text = "Date of report"
@@ -81,7 +101,8 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	p.Y.Max = maxCases
 
 	//legend
-	p.Legend.Add("New confirmed cases in 7 days", bar)
+	p.Legend.Add("New confirmed cases by 7 days", bar)
+	p.Legend.Add("New positive PCR test results by 7 days in Tokyo", line)
 	p.Legend.Top = true  //top
 	p.Legend.Left = true //left
 	p.Legend.XOffs = 0
@@ -102,7 +123,7 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 	dataY := plotter.Values{}
 	maxDeaths := 0.0
 	for _, d := range data {
-		labelX = append(labelX, d.date)
+		labelX = append(labelX, d.period.StringEnd())
 		dataY = append(dataY, d.deaths)
 		maxDeaths = max(maxDeaths, d.deaths)
 	}
@@ -144,7 +165,7 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 	p.Y.Max = maxDeaths
 
 	//legend
-	p.Legend.Add("New deaths in 7 days", bar)
+	p.Legend.Add("New deaths by 7 days", bar)
 	p.Legend.Top = true   //top
 	p.Legend.Left = false //left
 	p.Legend.XOffs = -5

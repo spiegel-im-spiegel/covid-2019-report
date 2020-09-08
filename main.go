@@ -20,9 +20,11 @@ const (
 )
 
 func main() {
-	data, err := cov19data.ImportWHOCSV(
+	period := values.NewPeriod(values.NewDate(2020, time.Month(3), 11), values.NewDateTime(time.Now()).AddDay(-1))
+	global, err := cov19data.MakeHistogramWHO(
 		client.Default(),
-		entity.WithFilterPeriod(values.NewPeriod(values.NewDate(2020, time.Month(3), 11), values.NewDateTime(time.Time{}))),
+		period,
+		7,
 		entity.WithCountryCode(values.CC_JP),
 		entity.WithRegionCode(values.WPRO),
 	)
@@ -30,12 +32,13 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	h, err := cov19data.MakeHistgramWHO(data, 7)
+	tokyo, err := cov19data.MakeHistogramTokyo(client.Default(), period, 1)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	histChart := chart.ImportHistgramData(h)
+
+	histChart := chart.ImportHistgramData(global, tokyo)
 
 	if err := chart.BarChartHistCases(histChart, histcasesFile); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
