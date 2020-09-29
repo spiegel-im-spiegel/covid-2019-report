@@ -5,9 +5,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/spiegel-im-spiegel/cov19data"
-	"github.com/spiegel-im-spiegel/cov19data/client"
-	"github.com/spiegel-im-spiegel/cov19data/entity"
 	"github.com/spiegel-im-spiegel/cov19data/values"
 	"github.com/spiegel-im-spiegel/covid-2019-report/chart"
 	"github.com/spiegel-im-spiegel/covid-2019-report/imgutil"
@@ -20,19 +17,13 @@ const (
 )
 
 func main() {
-	period := values.NewPeriod(values.NewDate(2020, time.Month(3), 11), values.NewDateTime(time.Now()).AddDay(-1))
-	global, err := cov19data.MakeHistogramWHO(
-		client.Default(),
-		period,
-		7,
-		entity.WithCountryCode(values.CC_JP),
-		entity.WithRegionCode(values.WPRO),
-	)
+	p := values.NewPeriod(values.NewDate(2020, time.Month(3), 11), values.Yesterday())
+	global, err := getGlobalHist(p)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	tokyo, err := cov19data.MakeHistogramTokyo(client.Default(), period, 1)
+	tokyo, err := getTokyoHist(p)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
