@@ -166,10 +166,10 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 
 	//legend
 	p.Legend.Add("New deaths by 7 days", bar)
-	p.Legend.Top = true   //top
-	p.Legend.Left = false //left
-	p.Legend.XOffs = -5
-	p.Legend.YOffs = -10
+	p.Legend.Top = true  //top
+	p.Legend.Left = true //left
+	p.Legend.XOffs = 0
+	p.Legend.YOffs = 0
 
 	//title
 	p.Title.Text = "COVID-2019 deaths in Japan"
