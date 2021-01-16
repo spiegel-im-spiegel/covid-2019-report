@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
+	"net/http"
+
 	"github.com/spiegel-im-spiegel/cov19data"
-	"github.com/spiegel-im-spiegel/cov19data/client"
 	"github.com/spiegel-im-spiegel/cov19data/filter"
 	"github.com/spiegel-im-spiegel/cov19data/histogram"
 	"github.com/spiegel-im-spiegel/cov19data/values"
@@ -10,7 +12,7 @@ import (
 )
 
 func getGlobalHist(p values.Period) ([]*histogram.HistData, error) {
-	impt, err := cov19data.NewWeb(client.Default())
+	impt, err := cov19data.NewWeb(context.Background(), &http.Client{})
 	if err != nil {
 		return nil, errs.Wrap(err)
 	}

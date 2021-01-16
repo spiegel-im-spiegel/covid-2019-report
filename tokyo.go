@@ -1,7 +1,9 @@
 package main
 
 import (
-	"github.com/spiegel-im-spiegel/cov19data/client"
+	"context"
+	"net/http"
+
 	"github.com/spiegel-im-spiegel/cov19data/histogram"
 	"github.com/spiegel-im-spiegel/cov19data/tokyo"
 	"github.com/spiegel-im-spiegel/cov19data/values"
@@ -9,7 +11,7 @@ import (
 )
 
 func getTokyoHist(p values.Period) ([]*histogram.HistData, error) {
-	impt, err := tokyo.NewWeb(client.Default())
+	impt, err := tokyo.NewWeb(context.Background(), &http.Client{})
 	if err != nil {
 		return nil, errs.Wrap(err)
 	}
