@@ -23,8 +23,8 @@ type HistgramData struct {
 func newHistgramData(record *histogram.HistData) HistgramData {
 	return HistgramData{
 		period: record.Period,
-		cases:  (float64)(record.Cases),
-		deaths: (float64)(record.Deaths),
+		cases:  record.Cases,
+		deaths: record.Deaths,
 	}
 }
 
@@ -36,9 +36,17 @@ func ImportHistgramData(global, tokyo []*histogram.HistData) []HistgramData {
 	for _, h := range tokyo {
 		for i := 0; i < len(data); i++ {
 			if data[i].period.Contains(h.Period.End) {
-				data[i].casesTokyo += (float64)(h.Cases)
+				data[i].casesTokyo += h.Cases
 			}
 		}
+	}
+	return data
+}
+
+func ImportHistgramDataByPref(pref []*histogram.HistData) []HistgramData {
+	data := []HistgramData{}
+	for _, h := range pref {
+		data = append(data, newHistgramData(h))
 	}
 	return data
 }
@@ -118,6 +126,69 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	return nil
 }
 
+func BarChartHistCasesByPref(data []HistgramData, prefName, outPath string) error {
+	labelX := []string{}
+	dataY := plotter.Values{}
+	maxCases := 0.0
+	for _, d := range data {
+		labelX = append(labelX, d.period.StringEnd())
+		dataY = append(dataY, d.cases)
+		maxCases = max(maxCases, d.cases)
+	}
+	maxCases = (float64)((((int)(maxCases) / 100) + 1) * 100)
+
+	//default font
+	plot.DefaultFont = "Helvetica"
+	plotter.DefaultFont = "Helvetica"
+
+	//new plot
+	p, err := plot.New()
+	if err != nil {
+		return errs.Wrap(err, errs.WithContext("outPath", outPath))
+	}
+
+	//new bar chart
+	bar, err := plotter.NewBarChart(dataY, vg.Points(10))
+	if err != nil {
+		return errs.Wrap(err, errs.WithContext("outPath", outPath))
+	}
+	bar.LineStyle.Width = vg.Length(0)
+	bar.Color = plotutil.Color(2)
+	bar.Offset = 0
+	bar.Horizontal = false
+	p.Add(bar)
+
+	//labels of X
+	p.NominalX(labelX...)
+	p.X.Label.Text = "Date of report"
+	//p.X.Padding = 0
+	p.X.Tick.Label.Rotation = math.Pi / 2.5
+	p.X.Tick.Label.XAlign = draw.XRight
+	p.X.Tick.Label.YAlign = draw.YCenter
+
+	//labels of Y
+	p.Y.Label.Text = "Confirmed cases"
+	p.Y.Padding = 5
+	p.Y.Min = 0
+	p.Y.Max = maxCases
+
+	//legend
+	p.Legend.Add("New Cases", bar)
+	p.Legend.Top = true  //top
+	p.Legend.Left = true //left
+	p.Legend.XOffs = 0
+	p.Legend.YOffs = 0
+
+	//title
+	p.Title.Text = "Cases in " + prefName
+
+	//output image
+	if err := p.Save(20.0*(vg.Length)(len(data)+2), 8*vg.Centimeter, outPath); err != nil {
+		return errs.Wrap(err, errs.WithContext("outPath", outPath))
+	}
+	return nil
+}
+
 func BarChartHistDeaths(data []HistgramData, outPath string) error {
 	labelX := []string{}
 	dataY := plotter.Values{}
@@ -181,7 +252,7 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 	return nil
 }
 
-/* Copyright 2020 Spiegel
+/* Copyright 2020-2021 Spiegel
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

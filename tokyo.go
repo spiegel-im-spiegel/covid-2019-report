@@ -2,16 +2,16 @@ package main
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/spiegel-im-spiegel/cov19data/histogram"
 	"github.com/spiegel-im-spiegel/cov19data/tokyo"
 	"github.com/spiegel-im-spiegel/cov19data/values"
 	"github.com/spiegel-im-spiegel/errs"
+	"github.com/spiegel-im-spiegel/fetch"
 )
 
 func getTokyoHist(p values.Period) ([]*histogram.HistData, error) {
-	impt, err := tokyo.NewWeb(context.Background(), &http.Client{})
+	impt, err := tokyo.NewWeb(context.Background(), fetch.New())
 	if err != nil {
 		return nil, errs.Wrap(err)
 	}
@@ -19,7 +19,7 @@ func getTokyoHist(p values.Period) ([]*histogram.HistData, error) {
 	return impt.Histogram(p, 1)
 }
 
-/* Copyright 2020 Spiegel
+/* Copyright 2020-2021 Spiegel
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

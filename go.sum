@@ -23,12 +23,12 @@ github.com/phpdave11/gofpdi v1.0.7/go.mod h1:vBmVV0Do6hSBHC8uKUQ71JGW+ZGQq74llk/
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/ruudk/golang-pdf417 v0.0.0-20181029194003-1af4ab5afa58/go.mod h1:6lfFZQK844Gfx8o5WFuvpxWRwnSoipWe/p622j1v06w=
-github.com/spiegel-im-spiegel/cov19data v0.3.3 h1:Yo379u8XSkGbh2OAXw/1ll61b1Mh+JMBFI5CTM+x3b4=
-github.com/spiegel-im-spiegel/cov19data v0.3.3/go.mod h1:Y8uGkDfASwXefiuRXjQwpI6+rbjnPEj4Ta/MR4bKUgY=
+github.com/spiegel-im-spiegel/cov19data v0.4.2 h1:7EJfDLTSe+jPFRjzX1qSdmTzP77HYjR++3Y9NTQ95eQ=
+github.com/spiegel-im-spiegel/cov19data v0.4.2/go.mod h1:II21HefFwUzMmNdYEdLGx/2kmszeVTMnTyujk/I7/L4=
 github.com/spiegel-im-spiegel/errs v1.0.2 h1:v4amEwRDqRWjKHOILQnJSovYhZ4ZttEnBBXNXEzS6Sc=
 github.com/spiegel-im-spiegel/errs v1.0.2/go.mod h1:UoasJYYujMcdkbT9USv8dfZWoMyaY3btqQxoLJImw0A=
-github.com/spiegel-im-spiegel/fetch v0.2.1 h1:DEZjboFVrXkTJjSlqDBUHVWdMqirlnDG2R8LKRtGhRQ=
-github.com/spiegel-im-spiegel/fetch v0.2.1/go.mod h1:IQvb70onwbv58/tGz1QhKYEaZs/2ehPaHMva39/jrrU=
+github.com/spiegel-im-spiegel/fetch v0.2.2 h1:of03ciFaq9arqhvvXeMeotpHa9zn2ogKwFtTHTtDkU8=
+github.com/spiegel-im-spiegel/fetch v0.2.2/go.mod h1:IQvb70onwbv58/tGz1QhKYEaZs/2ehPaHMva39/jrrU=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20190510104115-cbcb75029529/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
