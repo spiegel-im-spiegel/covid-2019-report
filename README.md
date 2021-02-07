@@ -48,6 +48,9 @@ WHO がパンデミック宣言を行った 2020-03-11 以降における国内�
 - [Characteristics of SARS-CoV-2 and COVID-19 | Nature Reviews Microbiology](https://www.nature.com/articles/s41579-020-00459-7?error=cookies_not_supported&code=70d81179-79f2-4810-afd8-4e9f9b6d57db)
     - [ブログ: SARS-CoV-2とCOVID-19の特徴](https://okuranagaimo.blogspot.com/2020/10/sars-cov-2covid-19.html)
 - [感染症数理モデルとCOVID-19 | 日本医師会 COVID-19有識者会議](https://www.covid19-jma-medical-expert-meeting.jp/topic/3925)
+- [Japan: COVID-19 Public Forecasts](https://datastudio.google.com/reporting/8224d512-a76e-4d38-91c1-935ba119eb8f/page/ncZpB?feature=opengraph)
+- [COVID-19 rarely spreads through surfaces. So why are we still deep cleaning?](https://www.nature.com/articles/d41586-021-00251-4?error=cookies_not_supported&code=8208a01d-425d-4369-8169-c9d29038d2c1)
+    - [ブログ: COVID-19が表面に広がることはほとんどない。では、なぜ私たちはまだディープクリーニングをしているのか?](https://okuranagaimo.blogspot.com/2021/02/covid-19.html)
 
 ## Dependency Graph
 
