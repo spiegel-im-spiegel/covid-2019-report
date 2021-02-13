@@ -1,2 +1,2 @@
 #!/bin/bash
-libreoffice7.0 --convert-to csv ./matsue-pcr-test-results.ods
+libreoffice7.1 --convert-to csv ./matsue-pcr-test-results.ods
