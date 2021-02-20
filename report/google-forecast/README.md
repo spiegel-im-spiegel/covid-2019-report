@@ -1,5 +1,7 @@
 # 日本版 Google COVID-19 Forecast データより
 
+ Google による「[COVID-19 感染予測 (日本版)](https://datastudio.google.com/s/nXbF2P6La2M)」データを元に，過去4週間分の実測値と＋1週間分の予測値を7日ごとの棒グラフにまとめました。都道府県単位でグラフにしています。ご利用は自由にどうぞ。
+
 ![](./JP-01-hokkaido-cov19-forecast.png)
 ![](./JP-02-aomori-cov19-forecast.png)
 ![](./JP-03-iwate-cov19-forecast.png)
