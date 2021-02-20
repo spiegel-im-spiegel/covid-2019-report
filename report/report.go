@@ -1,98 +1,56 @@
 package main
 
 import (
-	"bytes"
 	"context"
 	"fmt"
-	"io"
+	"net/http"
 	"os"
 
-	"github.com/spiegel-im-spiegel/cov19data/filter"
-	"github.com/spiegel-im-spiegel/cov19data/google"
-	"github.com/spiegel-im-spiegel/cov19data/google/entity"
-	"github.com/spiegel-im-spiegel/cov19data/histogram"
-	"github.com/spiegel-im-spiegel/cov19data/values"
-	"github.com/spiegel-im-spiegel/covid-2019-report/chart"
-	"github.com/spiegel-im-spiegel/fetch"
+	"github.com/spiegel-im-spiegel/cov19jpn/chart"
+	"github.com/spiegel-im-spiegel/cov19jpn/entity"
+	"github.com/spiegel-im-spiegel/cov19jpn/fetch"
+	"github.com/spiegel-im-spiegel/cov19jpn/filter"
+	"github.com/spiegel-im-spiegel/cov19jpn/values/prefcodejpn"
 )
 
-func getAllData() ([]*entity.JapanData, error) {
-	impt, err := google.NewWeb(context.Background(), fetch.New())
-	if err != nil {
-		return nil, err
+func getPrefCodes() []prefcodejpn.Code {
+	prefcodes := []prefcodejpn.Code{}
+	for i := uint(1); ; i++ {
+		c := prefcodejpn.Code(i)
+		prefcodes = append(prefcodes, c)
+		if c == prefcodejpn.PREFCODE_MAX {
+			break
+		}
 	}
-	defer impt.Close()
-	return impt.Data()
+	return prefcodes
 }
 
-func outputFile(path string, dat []byte) error {
-	file, err := os.Create(path)
+func run() error {
+	r, err := fetch.Web(context.Background(), &http.Client{})
 	if err != nil {
 		return err
 	}
-	defer file.Close()
-	if _, err := io.Copy(file, bytes.NewReader(dat)); err != nil {
+	defer r.Close()
+	es, err := fetch.Import(r, filter.New())
+	if err != nil {
 		return err
+	}
+	list := entity.NewList(es)
+	for _, pref := range getPrefCodes() {
+		sublist := list.Filer(filter.New(pref))
+		hlist := chart.New(sublist.StartDayMeasure(), sublist.EndDayMeasure().AddDay(7), 7, sublist)
+		filename := fmt.Sprintf("./google-forecast/%s-%s-cov19-forecast.png", pref.String(), pref.Name())
+		if err := chart.MakeHistChart(hlist, pref.Title(), filename); err != nil {
+			return err
+		}
 	}
 	return nil
-
-}
-
-func exportCsv(data []*entity.JapanData, pc values.PrefJpCode, path string) error {
-	b, err := entity.ExportCSV(
-		data,
-		filter.WithPeriod(
-			values.NewPeriod(
-				values.Yesterday().AddDay(-27),
-				values.Yesterday().AddDay(6),
-			),
-		),
-		filter.WithPrefJpCode(pc),
-	)
-	if err != nil {
-		return err
-	}
-	return outputFile(path, b)
-}
-
-func exportHistData(data []*entity.JapanData, pc values.PrefJpCode) ([]*histogram.HistData, error) {
-	return entity.ExportHistgram(
-		data,
-		values.NewPeriod(
-			values.Yesterday().AddDay(-27),
-			values.Yesterday().AddDay(6),
-		),
-		7,
-		filter.WithPrefJpCode(pc),
-	)
 }
 
 func main() {
-	data, err := getAllData()
-	if err != nil {
+	if err := run(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
-	}
-	//shimane data
-	if err := exportCsv(data, values.PrefJpCode(32), "shimane/shimane-covid19-cases-recently.csv"); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-	}
-	if hist, err := exportHistData(data, values.PrefJpCode(32)); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-	} else if err := chart.BarChartHistCasesByPref(chart.ImportHistgramDataByPref(hist), "Shimane", "shimane/shimane-covid19-cases-histgram.png"); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-	}
-	// if err := exportHistCsv(data, values.PrefJpCode(32), "shimane/shimane-covid19-cases-histgram.csv"); err != nil {
-	// 	fmt.Fprintln(os.Stderr, err)
-	// }
-	//hiroshima data
-	if err := exportCsv(data, values.PrefJpCode(34), "hiroshima/hiroshima-covid19-cases-recently.csv"); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-	}
-	if hist, err := exportHistData(data, values.PrefJpCode(34)); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-	} else if err := chart.BarChartHistCasesByPref(chart.ImportHistgramDataByPref(hist), "Hiroshima", "hiroshima/hiroshima-covid19-cases-histgram.png"); err != nil {
-		fmt.Fprintln(os.Stderr, err)
 	}
 }
 

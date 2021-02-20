@@ -1,5 +1,5 @@
 #!/bin/bash
-pushd shimane/matsue/
+pushd matsue/
 bash ./build-csv.sh
 popd
 curl -L -sS "https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv" | gnkf nl -n lf -o ./tokyo/130001_tokyo_covid19_patients.csv || exit 1
