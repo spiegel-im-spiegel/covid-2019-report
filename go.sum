@@ -172,12 +172,13 @@ github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An
 github.com/spf13/viper v1.7.0/go.mod h1:8WkrPz2fc9jxqZNCJI/76HCieCp4Q8HaLFoCha5qpdg=
 github.com/spiegel-im-spiegel/cov19data v0.4.3 h1:Pbdo3Ut+lvWs1bdEzD0Ips8RvQxTWiRhJdimGq4iMxc=
 github.com/spiegel-im-spiegel/cov19data v0.4.3/go.mod h1:II21HefFwUzMmNdYEdLGx/2kmszeVTMnTyujk/I7/L4=
-github.com/spiegel-im-spiegel/cov19jpn v0.1.1 h1:tK3hgGQsfckEhayicE6y7uh0ZoKoR7gYZbTTkJWiJZM=
-github.com/spiegel-im-spiegel/cov19jpn v0.1.1/go.mod h1:FwkBF936g75lVjA3+Wj5xUUta/7bANJ1NaDgkhMuknA=
+github.com/spiegel-im-spiegel/cov19jpn v0.2.0 h1:N8qKzkE39A61RmQBAtSiR1QpKMFlOeiIK9llkqlj0Us=
+github.com/spiegel-im-spiegel/cov19jpn v0.2.0/go.mod h1:pCGg5Amd9JO88gqh8NQG6/odAVvfZMGiB3Gyoa0NyFw=
 github.com/spiegel-im-spiegel/errs v1.0.2 h1:v4amEwRDqRWjKHOILQnJSovYhZ4ZttEnBBXNXEzS6Sc=
 github.com/spiegel-im-spiegel/errs v1.0.2/go.mod h1:UoasJYYujMcdkbT9USv8dfZWoMyaY3btqQxoLJImw0A=
-github.com/spiegel-im-spiegel/fetch v0.2.2 h1:of03ciFaq9arqhvvXeMeotpHa9zn2ogKwFtTHTtDkU8=
 github.com/spiegel-im-spiegel/fetch v0.2.2/go.mod h1:IQvb70onwbv58/tGz1QhKYEaZs/2ehPaHMva39/jrrU=
+github.com/spiegel-im-spiegel/fetch v0.2.3 h1:Zh5rHvOjfC81rxKvtUD21JT609smds+BRh+H84s8qEw=
+github.com/spiegel-im-spiegel/fetch v0.2.3/go.mod h1:ePIXxdC9OvSarXEO6HW1MgQwtBaKQo0qgDLOhKFXkQ0=
 github.com/spiegel-im-spiegel/gocli v0.10.3/go.mod h1:9vRvly2giutJ2sAtQjrw570p9ulJA3twgKlurmnj12g=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
@@ -290,7 +291,6 @@ golang.org/x/xerrors v0.0.0-20190717185122-a985d3407aa7/go.mod h1:I/5z698sn9Ka8T
 gonum.org/v1/gonum v0.0.0-20180816165407-929014505bf4/go.mod h1:Y+Yx5eoAFn32cQvJDxZx5Dpnq+c3wtXuadVZAcxbbBo=
 gonum.org/v1/gonum v0.8.1 h1:wGtP3yGpc5mCLOLeTeBdjeui9oZSz5De0eOjMLC/QuQ=
 gonum.org/v1/gonum v0.8.1/go.mod h1:oe/vMfY3deqTw+1EZJhuvEW2iwGF1bW9wwu7XCu0+v0=
-gonum.org/v1/netlib v0.0.0-20190313105609-8cb42192e0e0 h1:OE9mWmgKkjJyEmDAAtGMPjXu+YNeGvK9VTSHY6+Qihc=
 gonum.org/v1/netlib v0.0.0-20190313105609-8cb42192e0e0/go.mod h1:wa6Ws7BG/ESfp6dHfk7C6KdzKA7wR7u/rKwOGE66zvw=
 gonum.org/v1/plot v0.0.0-20190515093506-e2840ee46a6b/go.mod h1:Wt8AAjI+ypCyYX3nZBvf6cAIx93T+c/OS2HFAYskSZc=
 gonum.org/v1/plot v0.8.1 h1:1oWyfw7tIDDtKb+t+SbR9RFruMmNJlsKiZUolHdys2I=
