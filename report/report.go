@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 
@@ -26,6 +28,7 @@ func getPrefCodes() []prefcodejpn.Code {
 }
 
 func run() error {
+	//fetch data
 	r, err := fetch.Web(context.Background(), &http.Client{})
 	if err != nil {
 		return err
@@ -36,6 +39,24 @@ func run() error {
 		return err
 	}
 	list := entity.NewList(es)
+	list.Sort()
+
+	//csv
+	if err := func() error {
+		file, err := os.Create("./google-forecast/forecast_JAPAN_PREFECTURE_28.csv")
+		if err != nil {
+			return err
+		}
+		defer file.Close()
+		if _, err := io.Copy(file, bytes.NewReader(list.EncodeCSV())); err != nil {
+			return err
+		}
+		return nil
+	}(); err != nil {
+		return err
+	}
+
+	//plots
 	for _, pref := range getPrefCodes() {
 		sublist := list.Filer(filter.New(pref))
 		hlist := chart.New(sublist.StartDayMeasure(), sublist.EndDayMeasure().AddDay(7), 7, sublist)
