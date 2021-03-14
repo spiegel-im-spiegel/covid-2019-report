@@ -7,6 +7,7 @@ import (
 	"github.com/spiegel-im-spiegel/cov19data/values"
 	"github.com/spiegel-im-spiegel/errs"
 	"gonum.org/v1/plot"
+	"gonum.org/v1/plot/font"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/plotutil"
 	"gonum.org/v1/plot/vg"
@@ -66,14 +67,13 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	maxCases = (float64)((((int)(maxCases) / 400) + 1) * 400)
 
 	//default font
-	plot.DefaultFont = "Helvetica"
-	plotter.DefaultFont = "Helvetica"
+	plot.DefaultFont = font.Font{
+		Typeface: "Liberation",
+		Variant:  "Sans",
+	}
 
 	//new plot
-	p, err := plot.New()
-	if err != nil {
-		return errs.Wrap(err, errs.WithContext("outPath", outPath))
-	}
+	p := plot.New()
 
 	//new bar chart
 	bar, err := plotter.NewBarChart(dataY, vg.Points(10))
@@ -138,14 +138,13 @@ func BarChartHistCasesByPref(data []HistgramData, prefName, outPath string) erro
 	maxCases = (float64)((((int)(maxCases) / 100) + 1) * 100)
 
 	//default font
-	plot.DefaultFont = "Helvetica"
-	plotter.DefaultFont = "Helvetica"
+	plot.DefaultFont = font.Font{
+		Typeface: "Liberation",
+		Variant:  "Sans",
+	}
 
 	//new plot
-	p, err := plot.New()
-	if err != nil {
-		return errs.Wrap(err, errs.WithContext("outPath", outPath))
-	}
+	p := plot.New()
 
 	//new bar chart
 	bar, err := plotter.NewBarChart(dataY, vg.Points(10))
@@ -201,14 +200,13 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 	maxDeaths = (float64)((((int)(maxDeaths) / 200) + 1) * 200)
 
 	//default font
-	plot.DefaultFont = "Helvetica"
-	plotter.DefaultFont = "Helvetica"
+	plot.DefaultFont = font.Font{
+		Typeface: "Liberation",
+		Variant:  "Sans",
+	}
 
 	//new plot
-	p, err := plot.New()
-	if err != nil {
-		return errs.Wrap(err, errs.WithContext("outPath", outPath))
-	}
+	p := plot.New()
 
 	//new bar chart
 	bar, err := plotter.NewBarChart(dataY, vg.Points(10))
