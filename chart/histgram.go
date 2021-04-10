@@ -76,7 +76,7 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	p := plot.New()
 
 	//new bar chart
-	bar, err := plotter.NewBarChart(dataY, vg.Points(10))
+	bar, err := plotter.NewBarChart(dataY, vg.Points(5))
 	if err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
@@ -120,7 +120,7 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	p.Title.Text = "Confirmed COVID-2019 Cases in Japan"
 
 	//output image
-	if err := p.Save(20.0*(vg.Length)(len(data)+2), 10*vg.Centimeter, outPath); err != nil {
+	if err := p.Save(10.0*(vg.Length)(len(data)+2), 10*vg.Centimeter, outPath); err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
 	return nil
@@ -147,7 +147,7 @@ func BarChartHistCasesByPref(data []HistgramData, prefName, outPath string) erro
 	p := plot.New()
 
 	//new bar chart
-	bar, err := plotter.NewBarChart(dataY, vg.Points(10))
+	bar, err := plotter.NewBarChart(dataY, vg.Points(5))
 	if err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
@@ -182,7 +182,7 @@ func BarChartHistCasesByPref(data []HistgramData, prefName, outPath string) erro
 	p.Title.Text = "Cases in " + prefName
 
 	//output image
-	if err := p.Save(20.0*(vg.Length)(len(data)+2), 8*vg.Centimeter, outPath); err != nil {
+	if err := p.Save(10.0*(vg.Length)(len(data)+2), 8*vg.Centimeter, outPath); err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
 	return nil
@@ -209,7 +209,7 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 	p := plot.New()
 
 	//new bar chart
-	bar, err := plotter.NewBarChart(dataY, vg.Points(10))
+	bar, err := plotter.NewBarChart(dataY, vg.Points(5))
 	if err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
@@ -244,7 +244,7 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 	p.Title.Text = "COVID-2019 deaths in Japan"
 
 	//output image
-	if err := p.Save(20.0*(vg.Length)(len(data)+2), 8*vg.Centimeter, outPath); err != nil {
+	if err := p.Save(10.0*(vg.Length)(len(data)+2), 8*vg.Centimeter, outPath); err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
 	return nil
