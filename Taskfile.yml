@@ -1,0 +1,62 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - task: test-all
+      - task: build-all
+
+  build-all:
+    deps: [build-who, get-global-data, build-google-forecast, build-matsue]
+
+  build-who:
+    desc: Build chart from WHO COVID-19 global data.
+    cmds:
+      - go run .
+
+  get-global-data:
+    desc: Get CSV files; WHO COVID-19 global data and Tokyo patients data.
+    dir: report/
+    cmds:
+      - curl -L -sS "https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv" | gnkf nl -n lf -o ./tokyo/130001_tokyo_covid19_patients.csv
+      - curl -L -sS "https://covid19.who.int/WHO-COVID-19-global-data.csv" -o WHO-COVID-19-global-data.csv
+      - cat WHO-COVID-19-global-data.csv | jvgrep Japan > WHO-COVID-19-japan-data.csv || exit 0
+
+  build-google-forecast:
+    desc: Build chart from Google forecast data.
+    dir: report/
+    cmds:
+      - go run report.go
+
+  build-matsue:
+    desc: Build CSV file from COVID-19 data in Matsue.
+    dir: report/matsue/
+    cmds:
+      - libreoffice7.1 --convert-to csv ./matsue-pcr-test-results.ods
+
+  test-all:
+    cmds:
+      - task: clean
+      - task: test
+      - task: graph
+
+  test:
+    desc: Update modules, check vulns, test, and lint.
+    cmds:
+      - go mod verify
+      - go mod tidy -v
+      - depm list -j | docker run --rm -i sonatypecommunity/nancy:latest sleuth -n
+      - go test ./...
+      - docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.39.0 golangci-lint run --enable gosec --timeout 3m0s ./...
+
+  clean:
+    desc: Clean module and build cache, and remove go.sum file.
+    cmds:
+      - rm -f ./go.sum
+      - go clean -cache
+      - go clean -modcache
+
+  graph:
+    desc: Make grapth of dependency modules.
+    cmds:
+      - depm m --dot --dot-config dot-config.toml | dot -Tpng -o dependency.png
