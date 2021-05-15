@@ -53,6 +53,7 @@ WHO がパンデミック宣言を行った 2020-03-11 以降における国内�
   - [ブログ: COVID-19が表面に広がることはほとんどない。では、なぜ私たちはまだディープクリーニングをしているのか?](https://okuranagaimo.blogspot.com/2021/02/covid-19.html)
 - [Five reasons why COVID herd immunity is probably impossible](https://www.nature.com/articles/d41586-021-00728-2?error=cookies_not_supported&code=b270c063-5f42-45fc-bd8a-c4ed058b448c)
   - [ブログ: 新型コロナの集団免疫がおそらく不可能である5つの理由](https://okuranagaimo.blogspot.com/2021/03/5.html)
+- [変異株と闘う世界で進むワクチン接種、3回目の追加接種を模索する動きも：新型コロナウイルスと世界のいま（2021年4月） | WIRED.jp](https://wired.jp/2021/05/05/covid-19-april-2021/)
 
 ## Dependency Graph
 
