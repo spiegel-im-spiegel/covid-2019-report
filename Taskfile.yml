@@ -32,7 +32,7 @@ tasks:
     desc: Build CSV file from COVID-19 data in Matsue.
     dir: report/matsue/
     cmds:
-      - libreoffice7.1 --convert-to csv ./matsue-pcr-test-results.ods
+      - xls2csv -o ./matsue-pcr-test-results.csv ./matsue-pcr-test-results.xlsx
 
   test-all:
     cmds:
@@ -46,7 +46,7 @@ tasks:
       - go mod verify
       - depm list -j | docker run --rm -i sonatypecommunity/nancy:latest sleuth -n
       - go test ./...
-      - docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.39.0 golangci-lint run --enable gosec --timeout 3m0s ./...
+      - docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.40.1 golangci-lint run --enable gosec --timeout 3m0s ./...
     sources:
       - ./go.mod
       - '**/*.go'
