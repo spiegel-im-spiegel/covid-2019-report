@@ -177,8 +177,8 @@ github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An
 github.com/spf13/viper v1.7.0/go.mod h1:8WkrPz2fc9jxqZNCJI/76HCieCp4Q8HaLFoCha5qpdg=
 github.com/spiegel-im-spiegel/cov19data v0.5.1 h1:Pyj9lJx9CVo9SGd/3Mwjjz2kLdMDK9swyx256w573YI=
 github.com/spiegel-im-spiegel/cov19data v0.5.1/go.mod h1:uOeGjMuD05zXNcee/sqJSQm8GsY0a+lDzFj4ipFrWYA=
-github.com/spiegel-im-spiegel/cov19jpn v0.2.2 h1:3b/oZxEGbCsEoYVmGhODMRP98zQK/jaO0hIPPp0WDj4=
-github.com/spiegel-im-spiegel/cov19jpn v0.2.2/go.mod h1:/u/FG4/XBG+z0pR2Z8w15FOtChYgLkv1PaFx86seypA=
+github.com/spiegel-im-spiegel/cov19jpn v0.2.3 h1:ktVntYiRJuSN6FGR12xcf4Y++QLH7tjs8D3vkvrd5LI=
+github.com/spiegel-im-spiegel/cov19jpn v0.2.3/go.mod h1:/u/FG4/XBG+z0pR2Z8w15FOtChYgLkv1PaFx86seypA=
 github.com/spiegel-im-spiegel/csvdata v0.1.0 h1:1zCS2sr31lX1V6PeMsdbkuQiViB/dIv/VY3dL6lHEz0=
 github.com/spiegel-im-spiegel/csvdata v0.1.0/go.mod h1:bNTPQtF0aPiaAkawEwIT7u+h7drQFdnemw5dXT7P8sQ=
 github.com/spiegel-im-spiegel/errs v1.0.2 h1:v4amEwRDqRWjKHOILQnJSovYhZ4ZttEnBBXNXEzS6Sc=
