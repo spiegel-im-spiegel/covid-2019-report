@@ -56,11 +56,14 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	labelX := []string{}
 	dataY := plotter.Values{}
 	dataY2 := plotter.XYs{}
+	dataY3 := plotter.Values{}
 	maxCases := 0.0
 	for i, d := range data {
 		labelX = append(labelX, d.period.StringEnd())
 		dataY = append(dataY, d.cases)
 		maxCases = max(maxCases, d.cases)
+		dataY3 = append(dataY3, d.deaths)
+		maxCases = max(maxCases, d.deaths)
 		dataY2 = append(dataY2, plotter.XY{X: (float64)(i), Y: d.casesTokyo})
 		maxCases = max(maxCases, d.casesTokyo)
 	}
@@ -85,13 +88,22 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	bar.Offset = 0
 	bar.Horizontal = false
 	p.Add(bar)
+	bar3, err := plotter.NewBarChart(dataY3, vg.Points(5))
+	if err != nil {
+		return errs.Wrap(err, errs.WithContext("outPath", outPath))
+	}
+	bar3.LineStyle.Width = vg.Length(0)
+	bar3.Color = plotutil.Color(7)
+	bar3.Offset = 0
+	bar3.Horizontal = false
+	p.Add(bar3)
 
 	//new line chart
 	line, err := plotter.NewLine(dataY2)
 	if err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
-	line.Color = plotutil.Color(4)
+	line.Color = plotutil.Color(3)
 	p.Add(line)
 
 	//labels of X
@@ -110,6 +122,7 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 
 	//legend
 	p.Legend.Add("New confirmed cases by 7 days", bar)
+	p.Legend.Add("New deaths by 7 days", bar3)
 	p.Legend.Add("New positive PCR test results by 7 days in Tokyo", line)
 	p.Legend.Top = true  //top
 	p.Legend.Left = true //left
@@ -214,7 +227,7 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
 	bar.LineStyle.Width = vg.Length(0)
-	bar.Color = plotutil.Color(2)
+	bar.Color = plotutil.Color(7)
 	bar.Offset = 0
 	bar.Horizontal = false
 	p.Add(bar)
