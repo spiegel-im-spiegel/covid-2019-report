@@ -8,5 +8,5 @@
 データは以下の Web ページから手作業で抜粋しています。
 
 - [松江市:暮らしのガイド:【まとめページ】新型コロナウイルス感染症について](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/)
-    - [松江市:暮らしのガイド:検査件数](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/coronapcrkekka.html)
-    - [松江市:暮らしのガイド:松江市内の発生状況](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/coronahasseijoukyou.html)
+  - [新型コロナウイルス感染症患者等の状況](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/koronajyoukyou.html)
+  - [発生状況](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/coronahasseijoukyou.html)
