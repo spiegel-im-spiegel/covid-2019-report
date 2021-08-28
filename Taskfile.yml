@@ -7,7 +7,7 @@ tasks:
       - task: build-all
 
   build-all:
-    deps: [build-who, get-global-data, build-google-forecast, build-matsue]
+    deps: [build-who, get-global-data, build-google-forecast, build-matsue, build-matsue2]
 
   build-who:
     desc: Build chart from WHO COVID-19 global data.
@@ -33,6 +33,12 @@ tasks:
     dir: report/matsue/
     cmds:
       - xls2csv -o ./matsue-pcr-test-results.csv ./matsue-pcr-test-results.xlsx
+
+  build-matsue2:
+    desc: Build infections map in Matsue.
+    dir: report/matsue/infections/
+    cmds:
+      - dot -Tpng -o ./infections.png infections.dot
 
   test-all:
     cmds:
