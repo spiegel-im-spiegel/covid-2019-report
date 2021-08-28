@@ -168,6 +168,7 @@ digraph infections {
 	x191->p148;
 	x191->p149;
 	x191->p150;
+	p153[color=crimson];
 	x191->p153;
 	p148->p151;
 	p152;
@@ -191,6 +192,8 @@ digraph infections {
 	p171->p176;
 	p171->p177;
 	p171->p178;
+	x243[color=crimson];
+	p175[color=crimson];
 	x243->p175;
 	p176->p179;
 	p176->p180;
@@ -218,6 +221,8 @@ digraph infections {
 	p206->p207;
 	p206->p208;
 	p206->p214;
+	x341[color=crimson];
+	p209[color=crimson];
 	x341->p209;
 	p210;
 	p211->p212;
