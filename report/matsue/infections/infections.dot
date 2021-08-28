@@ -6,7 +6,9 @@ digraph infections {
 	node [
 		fontname="Inconsolata",
 		fontcolor = black,
+		style = "solid,filled",
 		color = black
+		fillcolor = white
 	];
 	edge [
 		color = coral3
@@ -469,6 +471,92 @@ digraph infections {
 	p458->p468;
 	p458->p495;
 	p460;
+
+	//from 2021-08-21 to 2021-08-27
+	p456[fillcolor=burlywood1];
+	p457[fillcolor=burlywood1];
+	p458[fillcolor=burlywood1];
+	p459[fillcolor=burlywood1];
+	p460[fillcolor=burlywood1];
+	p461[fillcolor=burlywood1];
+	p462[fillcolor=burlywood1];
+	p463[fillcolor=burlywood1];
+	p464[fillcolor=burlywood1];
+	p465[fillcolor=burlywood1];
+	p466[fillcolor=burlywood1];
+	p467[fillcolor=burlywood1];
+	p468[fillcolor=burlywood1];
+	p469[fillcolor=burlywood1];
+	p470[fillcolor=burlywood1];
+	p471[fillcolor=burlywood1];
+	p472[fillcolor=burlywood1];
+	p473[fillcolor=burlywood1];
+	p474[fillcolor=burlywood1];
+	p475[fillcolor=burlywood1];
+	p476[fillcolor=burlywood1];
+	p477[fillcolor=burlywood1];
+	p478[fillcolor=burlywood1];
+	p479[fillcolor=burlywood1];
+	p480[fillcolor=burlywood1];
+	p481[fillcolor=burlywood1];
+	p482[fillcolor=burlywood1];
+	p483[fillcolor=burlywood1];
+	p484[fillcolor=burlywood1];
+	p485[fillcolor=burlywood1];
+	p486[fillcolor=burlywood1];
+	p487[fillcolor=burlywood1];
+	p488[fillcolor=burlywood1];
+	p489[fillcolor=burlywood1];
+	p490[fillcolor=burlywood1];
+	p491[fillcolor=burlywood1];
+	p492[fillcolor=burlywood1];
+	p493[fillcolor=burlywood1];
+	p494[fillcolor=burlywood1];
+	p495[fillcolor=burlywood1];
+	p496[fillcolor=burlywood1];
+	p497[fillcolor=burlywood1];
+	p498[fillcolor=burlywood1];
+	p499[fillcolor=burlywood1];
+	p500[fillcolor=burlywood1];
+	p501[fillcolor=burlywood1];
+	p502[fillcolor=burlywood1];
+	p503[fillcolor=burlywood1];
+	p504[fillcolor=burlywood1];
+	p505[fillcolor=burlywood1];
+	p506[fillcolor=burlywood1];
+	p507[fillcolor=burlywood1];
+	p508[fillcolor=burlywood1];
+	p509[fillcolor=burlywood1];
+	p510[fillcolor=burlywood1];
+	p511[fillcolor=burlywood1];
+	p512[fillcolor=burlywood1];
+	p513[fillcolor=burlywood1];
+	p514[fillcolor=burlywood1];
+	p515[fillcolor=burlywood1];
+	p516[fillcolor=burlywood1];
+	p517[fillcolor=burlywood1];
+	p518[fillcolor=burlywood1];
+	p519[fillcolor=burlywood1];
+	p520[fillcolor=burlywood1];
+	p521[fillcolor=burlywood1];
+	p522[fillcolor=burlywood1];
+	p523[fillcolor=burlywood1];
+	p524[fillcolor=burlywood1];
+	p525[fillcolor=burlywood1];
+	p526[fillcolor=burlywood1];
+	p527[fillcolor=burlywood1];
+	p528[fillcolor=burlywood1];
+	p529[fillcolor=burlywood1];
+	p530[fillcolor=burlywood1];
+	p531[fillcolor=burlywood1];
+	p532[fillcolor=burlywood1];
+	p533[fillcolor=burlywood1];
+	p534[fillcolor=burlywood1];
+	p535[fillcolor=burlywood1];
+	p536[fillcolor=burlywood1];
+	p537[fillcolor=burlywood1];
+	p538[fillcolor=burlywood1];
+
 	p462->p470;
 	p462->p471;
 	p463[color=crimson];
