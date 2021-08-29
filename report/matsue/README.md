@@ -1,12 +1,19 @@
-# 島根県松江市における PCR 検査検査数と陽性結果数
+# 島根県松江市における SARS-CoV-2 感染者マップ
 
-以下のデータは島根県松江市における PCR 検査実施件数と検査結果として陽性反応が出た数を日毎にまとめたものです。
+島根県松江市の COVID-2019 発症者の[発生状況]ページを元に  SARS-CoV-2 感染者マップを作ってみた。手作業による転記なのでミス等あると思うが，ご容赦のほどを。
 
-- [matsue-pcr-test-results.ods](./matsue-pcr-test-results.ods) : LibreOffice ドキュメント形式
-- [matsue-pcr-test-results.csv](./matsue-pcr-test-results.csv) : CSV テキスト形式
+![](./infections.png)
 
-データは以下の Web ページから手作業で抜粋しています。
+- 2020年10月25日報告分（125例目）からの報告をプロットしている
+- 黒丸は松江市内在住者
+- 赤丸は松江市外在住者または松江市外在住者からの二次感染者
+- 背景が濃いものは直近1週間以内の松江市内在住の感染者
+
+## 参考
 
 - [松江市:暮らしのガイド:【まとめページ】新型コロナウイルス感染症について](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/)
   - [新型コロナウイルス感染症患者等の状況](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/koronajyoukyou.html)
-  - [発生状況](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/coronahasseijoukyou.html)
+  - [発生状況]
+  - [コロナワクチン接種](http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/vaccine/)
+
+[発生状況]: http://www1.city.matsue.shimane.jp/kenkou/kenkoudukuri/kansensyo_yobou/coronavirus-disease/coronahasseijoukyou.html "松江市:暮らしのガイド:発生状況"
