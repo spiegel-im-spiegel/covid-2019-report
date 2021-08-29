@@ -31,8 +31,22 @@ func ConvDot(infections []*Infection, start, end date.Date) (string, error) {
 	if len(infections) == 0 {
 		return "", nil
 	}
-
+	if !start.IsZero() {
+		if start.Before(infections[0].Date) {
+			start = date.Zero
+		}
+		if !end.IsZero() && start.After(end) {
+			end = start
+		}
+	}
 	lastDay := infections[len(infections)-1].Date
+	if !end.IsZero() {
+		if end.After(lastDay) {
+			end = date.Zero
+		} else if end.Before(lastDay) {
+			lastDay = end
+		}
+	}
 	declr := &strings.Builder{}
 	rel := &strings.Builder{}
 	outside := map[string]string{}
