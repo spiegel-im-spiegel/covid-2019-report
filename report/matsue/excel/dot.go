@@ -60,30 +60,30 @@ func ConvDot(infections []*Infection, start, end date.Date) (string, error) {
 		}
 		if infection.Date.Before(lastDay.AddDay(-6)) {
 			if !infection.InsideFlag || len(infection.FromOutside) > 0 {
-				declr.WriteString(fmt.Sprintf("\t%s[color=crimson]\n", infection.NodeMatsue))
+				declr.WriteString(fmt.Sprintf("\t%s[color=crimson];\n", infection.NodeMatsue))
 			} else {
-				declr.WriteString(fmt.Sprintf("\t%s\n", infection.NodeMatsue))
+				declr.WriteString(fmt.Sprintf("\t%s;\n", infection.NodeMatsue))
 			}
 		} else if !infection.InsideFlag {
-			declr.WriteString(fmt.Sprintf("\t%s[color=crimson]\n", infection.NodeMatsue))
+			declr.WriteString(fmt.Sprintf("\t%s[color=crimson];\n", infection.NodeMatsue))
 		} else if len(infection.FromOutside) > 0 {
-			declr.WriteString(fmt.Sprintf("\t%s[color=crimson,fillcolor=burlywood1]\n", infection.NodeMatsue))
+			declr.WriteString(fmt.Sprintf("\t%s[color=crimson,fillcolor=burlywood1];\n", infection.NodeMatsue))
 		} else {
-			declr.WriteString(fmt.Sprintf("\t%s[fillcolor=burlywood1]\n", infection.NodeMatsue))
+			declr.WriteString(fmt.Sprintf("\t%s[fillcolor=burlywood1];\n", infection.NodeMatsue))
 		}
 		for _, node := range infection.FromOutside {
 			if !strings.EqualFold(node, "other") {
 				outside[node] = ""
-				rel.WriteString(fmt.Sprintf("\t%s->%s\n", node, infection.NodeMatsue))
+				rel.WriteString(fmt.Sprintf("\t%s->%s;\n", node, infection.NodeMatsue))
 			}
 		}
 		for _, node := range infection.FromInside {
-			rel.WriteString(fmt.Sprintf("\t%s->%s\n", node, infection.NodeMatsue))
+			rel.WriteString(fmt.Sprintf("\t%s->%s;\n", node, infection.NodeMatsue))
 		}
 	}
 	outsideList := make([]string, len(outside))
 	for k := range outside {
-		outsideList = append(outsideList, fmt.Sprintf("\t%s[color=crimson]\n", k))
+		outsideList = append(outsideList, fmt.Sprintf("\t%s[color=crimson];\n", k))
 	}
 	sort.Strings(outsideList)
 	declr.WriteString(strings.Join(outsideList, ""))
