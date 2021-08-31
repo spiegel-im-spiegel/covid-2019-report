@@ -2,6 +2,7 @@ package excel
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 
 	"github.com/spiegel-im-spiegel/cov19jpn/values/date"
@@ -57,7 +58,7 @@ func ConvDot(infections []*Infection, start, end date.Date) (string, error) {
 		if !end.IsZero() && infection.Date.After(end) {
 			continue
 		}
-		if infection.Date.Before(lastDay.AddDay(-7)) {
+		if infection.Date.Before(lastDay.AddDay(-6)) {
 			if !infection.InsideFlag || len(infection.FromOutside) > 0 {
 				declr.WriteString(fmt.Sprintf("\t%s[color=crimson]\n", infection.NodeMatsue))
 			} else {
@@ -80,9 +81,12 @@ func ConvDot(infections []*Infection, start, end date.Date) (string, error) {
 			rel.WriteString(fmt.Sprintf("\t%s->%s\n", node, infection.NodeMatsue))
 		}
 	}
+	outsideList := make([]string, len(outside))
 	for k := range outside {
-		declr.WriteString(fmt.Sprintf("\t%s[color=crimson]\n", k))
+		outsideList = append(outsideList, fmt.Sprintf("\t%s[color=crimson]\n", k))
 	}
+	sort.Strings(outsideList)
+	declr.WriteString(strings.Join(outsideList, ""))
 
 	bldr := &strings.Builder{}
 	bldr.WriteString(header)
