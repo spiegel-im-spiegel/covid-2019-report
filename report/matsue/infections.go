@@ -14,6 +14,7 @@ func main() {
 	args := flag.Args()
 	if len(args) == 0 {
 		fmt.Fprintln(os.Stderr, os.ErrInvalid)
+		return
 	}
 	xlsx, no, err := excel.OpenXlsxFileSheet(args[0], "")
 	if err != nil {
