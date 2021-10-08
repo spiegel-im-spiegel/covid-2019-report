@@ -16,12 +16,7 @@ func main() {
 		fmt.Fprintln(os.Stderr, os.ErrInvalid)
 		return
 	}
-	xlsx, no, err := excel.OpenXlsxFileSheet(args[0], "")
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "%+v\n", err)
-		return
-	}
-	infections, err := excel.NewInfections(xlsx, no)
+	infections, err := excel.NewInfections(args[0], "")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return

@@ -1,11 +1,14 @@
 package excel
 
 import (
+	"io"
 	"strings"
 
 	"github.com/spiegel-im-spiegel/cov19jpn/values/date"
 	"github.com/spiegel-im-spiegel/errs"
-	"github.com/xuri/excelize/v2"
+
+	"github.com/spiegel-im-spiegel/csvdata"
+	"github.com/spiegel-im-spiegel/csvdata/exceldata"
 )
 
 type Infection struct {
@@ -17,53 +20,46 @@ type Infection struct {
 	FromOutside []string
 }
 
-func NewInfections(xlsx *excelize.File, sheetIndex int) ([]*Infection, error) {
-	rows, err := xlsx.Rows(xlsx.GetSheetName(sheetIndex))
+func NewInfections(path, sheetName string) ([]*Infection, error) {
+	ods, err := exceldata.OpenFile(path, "")
 	if err != nil {
-		var errSheet excelize.ErrSheetNotExist
-		if errs.As(err, &errSheet) {
-			return nil, errs.Wrap(ErrInvalidSheetName, errs.WithCause(err))
-		}
-		return nil, errs.Wrap(err)
+		return nil, errs.Wrap(err, errs.WithContext("path", path))
 	}
+	r, err := exceldata.New(ods, sheetName)
+	if err != nil {
+		return nil, errs.Wrap(err, errs.WithContext("path", path), errs.WithContext("sheetName", sheetName))
+	}
+	rows := csvdata.NewRows(r, true)
+	rows.Close() // dummy
 
 	infections := []*Infection{}
-	for rows.Next() {
-		cols, err := rows.Columns()
-		if err != nil {
-			return nil, errs.Wrap(err)
-		}
-		if len(cols) < 3 {
-			return nil, errs.Wrap(ErrInvalidExcelData, errs.WithContext("cols", cols))
+	for {
+		if err := rows.Next(); err != nil {
+			if errs.Is(err, io.EOF) {
+				break
+			}
+			return infections, errs.Wrap(err)
 		}
 		i := &Infection{
-			NodeMatsue:  "m" + cols[0],
-			NodeShimane: "s" + cols[1],
-			Date:        date.FromString(cols[2]),
+			NodeMatsue:  "m" + rows.Get(0),
+			NodeShimane: "s" + rows.Get(1),
+			Date:        date.FromString(rows.Get(2)),
 			InsideFlag:  false,
 			FromInside:  []string{},
 			FromOutside: []string{},
 		}
-		if len(cols) >= 4 && strings.EqualFold(cols[3], "1") {
+		if strings.EqualFold(rows.Get(3), "1") {
 			i.InsideFlag = true
 		}
-		if len(cols) >= 5 && len(cols[4]) > 0 {
-			i.FromInside = append(i.FromInside, "m"+cols[4])
+		for n := 4; n <= 7; n++ {
+			if s := rows.Get(n); len(s) > 0 {
+				i.FromInside = append(i.FromInside, "m"+s)
+			}
 		}
-		if len(cols) >= 6 && len(cols[5]) > 0 {
-			i.FromInside = append(i.FromInside, "m"+cols[5])
-		}
-		if len(cols) >= 7 && len(cols[6]) > 0 {
-			i.FromInside = append(i.FromInside, "m"+cols[6])
-		}
-		if len(cols) >= 8 && len(cols[7]) > 0 {
-			i.FromInside = append(i.FromInside, "m"+cols[7])
-		}
-		if len(cols) >= 9 && len(cols[8]) > 0 {
-			i.FromOutside = append(i.FromOutside, cols[8])
-		}
-		if len(cols) >= 10 && len(cols[9]) > 0 {
-			i.FromOutside = append(i.FromOutside, cols[9])
+		for n := 8; n <= 9; n++ {
+			if s := rows.Get(n); len(s) > 0 {
+				i.FromOutside = append(i.FromOutside, s)
+			}
 		}
 		infections = append(infections, i)
 	}

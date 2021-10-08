@@ -192,6 +192,7 @@ github.com/jung-kurt/gofpdf v1.0.0/go.mod h1:7Id9E/uU8ce6rXgefFLlgrJj/GYY22cpxn+
 github.com/jung-kurt/gofpdf v1.0.3-0.20190309125859-24315acbbda5/go.mod h1:7Id9E/uU8ce6rXgefFLlgrJj/GYY22cpxn+r32jIOes=
 github.com/kisielk/errcheck v1.5.0/go.mod h1:pFxgyoBC7bSaBwPgfKdkLd5X25qrDl4LWUI2bnpBCr8=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
+github.com/knieriem/odf v0.1.0/go.mod h1:jRlg9+5Aya1ajQBX2ltU//o50Kn+cApfrsnkLCBjzJA=
 github.com/kr/fs v0.1.0/go.mod h1:FFnZGqtBN9Gxj7eW1uZ42v5BccTP0vu6NEaFoC2HwRg=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
@@ -245,12 +246,12 @@ github.com/spf13/cobra v1.2.1/go.mod h1:ExllRjgxM/piMAM+3tAZvg8fsklGAf3tPfi+i8t6
 github.com/spf13/jwalterweatherman v1.1.0/go.mod h1:aNWZUN0dPAAO/Ljvb5BEdw96iTZ0EXowPYD95IqWIGo=
 github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
 github.com/spf13/viper v1.8.1/go.mod h1:o0Pch8wJ9BVSWGQMbra6iw0oQ5oktSIBaujf1rJH9Ns=
-github.com/spiegel-im-spiegel/cov19data v0.5.3 h1:vQFPjXgaDAYqe44faidOmnUjYT3RwCeRr+3Ix2FzsOI=
-github.com/spiegel-im-spiegel/cov19data v0.5.3/go.mod h1:b2GPlwoH8jLzze94yYPrNoixPe3V5dHR6U87I1z9mZw=
-github.com/spiegel-im-spiegel/cov19jpn v0.2.9 h1:uoiDm9z+jYGK26eyXI/jgjT0kdt0XfD/YFzo+a8XerM=
-github.com/spiegel-im-spiegel/cov19jpn v0.2.9/go.mod h1:BKr8g70yPMZiuTR0cvs/jIcTIpM3OmkgsVnZZ9r9JB0=
-github.com/spiegel-im-spiegel/csvdata v0.1.2 h1:XgA2C0DnsbHYfifZFFsqy8sa1oHdMmxbiYnWA/fhjoY=
-github.com/spiegel-im-spiegel/csvdata v0.1.2/go.mod h1:FkzMmIp2RQrtRhFn7mz4bcAG+vaYujYMQZ6ZbAk81Fs=
+github.com/spiegel-im-spiegel/cov19data v0.5.4 h1:rPBc8BVfYI0LSWT2kARLTFiqR4ZodOFFgetIdU8Q7Wg=
+github.com/spiegel-im-spiegel/cov19data v0.5.4/go.mod h1:Bwlk9UVU2vmw6IvkYzJAaDPreBOOOa8d6y4k5y1Mcj0=
+github.com/spiegel-im-spiegel/cov19jpn v0.2.10 h1:Izf3siou8a6g9Fsq9/cHyGGIHBxVXzVJlJtimdYvbDI=
+github.com/spiegel-im-spiegel/cov19jpn v0.2.10/go.mod h1:yHWBxmAma8PTsqNSmf3QhxXRRVjQMC+yABDi2KSPUH8=
+github.com/spiegel-im-spiegel/csvdata v0.3.0 h1:/U9eGc/f10V77RVwlhsUCRsFMQKvAszoV+r0y6un6Uk=
+github.com/spiegel-im-spiegel/csvdata v0.3.0/go.mod h1:30Pt44pBI7C556+zOXOhEXgbUZgbAsB/yt2mgzuWVMQ=
 github.com/spiegel-im-spiegel/errs v1.0.5 h1:5qAUEXPZgF4ZIUmw2vpe7OgDP0C8DIV67BKwjfLidJI=
 github.com/spiegel-im-spiegel/errs v1.0.5/go.mod h1:mOsWcUc9hpRXjwdgJqJ3E2n6ibkYFvhNck1QD0ZVGOM=
 github.com/spiegel-im-spiegel/fetch v0.2.5 h1:S3yMboi2AT8DqubEed3OQfRHLABK+R44ooEHNw5fqTk=
