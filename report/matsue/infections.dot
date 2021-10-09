@@ -444,16 +444,20 @@ digraph infections {
 	m683;
 	m684;
 	m685;
-	m686[fillcolor=burlywood1];
-	m687[fillcolor=burlywood1];
-	m688[fillcolor=burlywood1];
-	m689[color=crimson,fillcolor=burlywood1];
-	m690[fillcolor=burlywood1];
-	m691[fillcolor=burlywood1];
-	m692[fillcolor=burlywood1];
-	m693[fillcolor=burlywood1];
-	m694[fillcolor=burlywood1];
+	m686;
+	m687;
+	m688;
+	m689[color=crimson];
+	m690;
+	m691;
+	m692;
+	m693;
+	m694;
 	m695[color=crimson];
+	m696[fillcolor=burlywood1];
+	m697[fillcolor=burlywood1];
+	m698[fillcolor=burlywood1];
+	m699[fillcolor=burlywood1];
 	s1153[color=crimson];
 	s1158[color=crimson];
 	s1183[color=crimson];
@@ -749,4 +753,5 @@ digraph infections {
 	m682->m690;
 	m669->m692;
 	m693->m694;
+	m696->m697;
 }
