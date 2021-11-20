@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/spiegel-im-spiegel/cov19data v0.5.4
 	github.com/spiegel-im-spiegel/cov19jpn v0.2.10
-	github.com/spiegel-im-spiegel/csvdata v0.3.0
+	github.com/spiegel-im-spiegel/csvdata v0.4.0
 	github.com/spiegel-im-spiegel/errs v1.0.5
 	github.com/spiegel-im-spiegel/fetch v0.2.5
 	gonum.org/v1/plot v0.10.0

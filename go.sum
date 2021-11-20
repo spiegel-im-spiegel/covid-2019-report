@@ -250,8 +250,9 @@ github.com/spiegel-im-spiegel/cov19data v0.5.4 h1:rPBc8BVfYI0LSWT2kARLTFiqR4ZodO
 github.com/spiegel-im-spiegel/cov19data v0.5.4/go.mod h1:Bwlk9UVU2vmw6IvkYzJAaDPreBOOOa8d6y4k5y1Mcj0=
 github.com/spiegel-im-spiegel/cov19jpn v0.2.10 h1:Izf3siou8a6g9Fsq9/cHyGGIHBxVXzVJlJtimdYvbDI=
 github.com/spiegel-im-spiegel/cov19jpn v0.2.10/go.mod h1:yHWBxmAma8PTsqNSmf3QhxXRRVjQMC+yABDi2KSPUH8=
-github.com/spiegel-im-spiegel/csvdata v0.3.0 h1:/U9eGc/f10V77RVwlhsUCRsFMQKvAszoV+r0y6un6Uk=
 github.com/spiegel-im-spiegel/csvdata v0.3.0/go.mod h1:30Pt44pBI7C556+zOXOhEXgbUZgbAsB/yt2mgzuWVMQ=
+github.com/spiegel-im-spiegel/csvdata v0.4.0 h1:x205StPvIjPx5BZ+w6+dsRgp4yxyfBLS4K674d4YOOU=
+github.com/spiegel-im-spiegel/csvdata v0.4.0/go.mod h1:30Pt44pBI7C556+zOXOhEXgbUZgbAsB/yt2mgzuWVMQ=
 github.com/spiegel-im-spiegel/errs v1.0.5 h1:5qAUEXPZgF4ZIUmw2vpe7OgDP0C8DIV67BKwjfLidJI=
 github.com/spiegel-im-spiegel/errs v1.0.5/go.mod h1:mOsWcUc9hpRXjwdgJqJ3E2n6ibkYFvhNck1QD0ZVGOM=
 github.com/spiegel-im-spiegel/fetch v0.2.5 h1:S3yMboi2AT8DqubEed3OQfRHLABK+R44ooEHNw5fqTk=
