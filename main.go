@@ -59,6 +59,10 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
+	// if err := imgutil.ConcatImageFiles(HistAllFile, HistCasesFileShort, HistDeathsFileShort); err != nil {
+	// 	fmt.Fprintf(os.Stderr, "%+v\n", err)
+	// 	return
+	// }
 }
 
 /* Copyright 2020-2021 Spiegel
