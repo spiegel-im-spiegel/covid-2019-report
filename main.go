@@ -17,6 +17,7 @@ const (
 	HistCasesFileShort  = "./covid-2019-new-cases-histgram-in-japan-short.png"
 	HistDeathsFileShort = "./covid-2019-new-deaths-histgram-in-japan-short.png"
 	HistAllFile         = "./covid-2019-histgram-in-japan.png"
+	HistAllFileShort    = "./covid-2019-histgram-in-japan-short.png"
 )
 
 func makeGraph(from, to values.Date, histCasesFile, histDeathsFile string) error {
@@ -59,10 +60,10 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
-	// if err := imgutil.ConcatImageFiles(HistAllFile, HistCasesFileShort, HistDeathsFileShort); err != nil {
-	// 	fmt.Fprintf(os.Stderr, "%+v\n", err)
-	// 	return
-	// }
+	if err := imgutil.ConcatImageFiles(HistAllFileShort, HistCasesFileShort, HistDeathsFileShort); err != nil {
+		fmt.Fprintf(os.Stderr, "%+v\n", err)
+		return
+	}
 }
 
 /* Copyright 2020-2021 Spiegel
