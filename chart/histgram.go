@@ -126,14 +126,19 @@ func BarChartHistCases(data []HistgramData, outPath string) error {
 	p.Legend.Add("New positive PCR test results by 7 days in Tokyo", line)
 	p.Legend.Top = true  //top
 	p.Legend.Left = true //left
-	p.Legend.XOffs = 0
-	p.Legend.YOffs = -10
+	p.Legend.XOffs = 15
+	p.Legend.YOffs = 0
 
 	//title
 	p.Title.Text = "Confirmed COVID-2019 Cases in Japan"
 
 	//output image
-	if err := p.Save(10.0*(vg.Length)(len(data)+2), 10*vg.Centimeter, outPath); err != nil {
+	w := 10.0 * (vg.Length)(len(data)+2)
+	if w < 300 {
+		w = 300
+	}
+	// if err := p.Save(10.0*(vg.Length)(len(data)+2), 10*vg.Centimeter, outPath); err != nil {
+	if err := p.Save(w, 10*vg.Centimeter, outPath); err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
 	return nil
@@ -250,14 +255,18 @@ func BarChartHistDeaths(data []HistgramData, outPath string) error {
 	p.Legend.Add("New deaths by 7 days", bar)
 	p.Legend.Top = true  //top
 	p.Legend.Left = true //left
-	p.Legend.XOffs = 0
+	p.Legend.XOffs = 15
 	p.Legend.YOffs = 0
 
 	//title
 	p.Title.Text = "COVID-2019 deaths in Japan"
 
 	//output image
-	if err := p.Save(10.0*(vg.Length)(len(data)+2), 8*vg.Centimeter, outPath); err != nil {
+	w := 10.0 * (vg.Length)(len(data)+2)
+	if w < 300 {
+		w = 300
+	}
+	if err := p.Save(w, 8*vg.Centimeter, outPath); err != nil {
 		return errs.Wrap(err, errs.WithContext("outPath", outPath))
 	}
 	return nil
