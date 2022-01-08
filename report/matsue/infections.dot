@@ -13,10 +13,6 @@ digraph infections {
 	edge [
 		color = coral3
 	];
-	m696;
-	m697;
-	m698;
-	m699;
 	m700[fillcolor=burlywood1];
 	m701[fillcolor=burlywood1];
 	m702[fillcolor=burlywood1];
@@ -55,7 +51,6 @@ digraph infections {
 	m735[fillcolor=burlywood1];
 	m736[fillcolor=burlywood1];
 	m737[fillcolor=burlywood1];
-	m696->m697;
 	m700->m701;
 	m700->m702;
 	m700->m703;

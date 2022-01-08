@@ -23,7 +23,8 @@ func main() {
 	}
 	// s, err := excel.ConvDot(infections, date.FromString("2020-10-25"), date.Today())
 	// s, err := excel.ConvDot(infections, date.FromString("2021-07-01"), date.Today())
-	s, err := excel.ConvDot(infections, date.FromString("2021-10-01"), date.Today())
+	//s, err := excel.ConvDot(infections, date.FromString("2021-10-01"), date.Today())
+	s, err := excel.ConvDot(infections, date.FromString("2022-01-01"), date.Today())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
