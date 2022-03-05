@@ -56,7 +56,7 @@ func main() {
 		return
 	}
 	// experimental
-	if err := makeGraph(values.NewDate(2021, time.Month(10), 1), lastDay, HistCasesFileShort, HistDeathsFileShort); err != nil {
+	if err := makeGraph(lastDay.AddDay(-7*26), lastDay, HistCasesFileShort, HistDeathsFileShort); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
 	}
