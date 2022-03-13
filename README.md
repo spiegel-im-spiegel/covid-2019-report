@@ -16,7 +16,7 @@ WHO がパンデミック宣言を行った 2020-03-11 以降における国内�
 
 また，データの取得には拙作のパッケージを使用しています。
 
-- [spiegel-im-spiegel/cov19data: Importing WHO COVID-2019 Cases Global Data](https://github.com/spiegel-im-spiegel/cov19data)
+- [goark/cov19data: Importing WHO COVID-2019 Cases Global Data](https://github.com/goark/cov19data)
 
 作成した情報はあくまで個人的な目的で作成したもので，データの正確性については保証しません（できません）し，これらを使って何かを主張するつもりもありません（私は医療関係者ではありません）ので，あらかじめご了承ください。
 

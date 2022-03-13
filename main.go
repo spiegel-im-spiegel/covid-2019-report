@@ -5,10 +5,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/spiegel-im-spiegel/cov19data/values"
+	"github.com/goark/cov19data/values"
+	"github.com/goark/errs"
 	"github.com/spiegel-im-spiegel/covid-2019-report/chart"
 	"github.com/spiegel-im-spiegel/covid-2019-report/imgutil"
-	"github.com/spiegel-im-spiegel/errs"
 )
 
 const (
@@ -46,7 +46,7 @@ func makeGraph(from, to values.Date, histCasesFile, histDeathsFile string) error
 }
 
 func main() {
-	lastDay := values.Yesterday()
+	lastDay := values.Yesterday().AddDay(-1)
 	if err := makeGraph(values.NewDate(2020, time.Month(3), 11), lastDay, HistCasesFile, HistDeathsFile); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return

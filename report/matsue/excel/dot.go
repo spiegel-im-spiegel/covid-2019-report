@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/spiegel-im-spiegel/cov19jpn/values/date"
+	"github.com/goark/cov19jpn/values/date"
 )
 
 const (

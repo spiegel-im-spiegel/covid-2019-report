@@ -3,9 +3,9 @@ package chart
 import (
 	"math"
 
-	"github.com/spiegel-im-spiegel/cov19data/histogram"
-	"github.com/spiegel-im-spiegel/cov19data/values"
-	"github.com/spiegel-im-spiegel/errs"
+	"github.com/goark/cov19data/histogram"
+	"github.com/goark/cov19data/values"
+	"github.com/goark/errs"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/font"
 	"gonum.org/v1/plot/plotter"

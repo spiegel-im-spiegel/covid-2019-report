@@ -4,11 +4,11 @@ import (
 	"io"
 	"strings"
 
-	"github.com/spiegel-im-spiegel/cov19jpn/values/date"
-	"github.com/spiegel-im-spiegel/errs"
+	"github.com/goark/cov19jpn/values/date"
+	"github.com/goark/errs"
 
-	"github.com/spiegel-im-spiegel/csvdata"
-	"github.com/spiegel-im-spiegel/csvdata/exceldata"
+	"github.com/goark/csvdata"
+	"github.com/goark/csvdata/exceldata"
 )
 
 type Infection struct {

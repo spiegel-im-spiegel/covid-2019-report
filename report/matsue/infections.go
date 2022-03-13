@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/spiegel-im-spiegel/cov19jpn/values/date"
+	"github.com/goark/cov19jpn/values/date"
 	"github.com/spiegel-im-spiegel/covid-2019-report/report/matsue/excel"
 )
 

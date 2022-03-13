@@ -3,12 +3,12 @@ package main
 import (
 	"context"
 
-	"github.com/spiegel-im-spiegel/cov19data"
-	"github.com/spiegel-im-spiegel/cov19data/filter"
-	"github.com/spiegel-im-spiegel/cov19data/histogram"
-	"github.com/spiegel-im-spiegel/cov19data/values"
-	"github.com/spiegel-im-spiegel/errs"
-	"github.com/spiegel-im-spiegel/fetch"
+	"github.com/goark/cov19data"
+	"github.com/goark/cov19data/filter"
+	"github.com/goark/cov19data/histogram"
+	"github.com/goark/cov19data/values"
+	"github.com/goark/errs"
+	"github.com/goark/fetch"
 )
 
 func getGlobalHist(p values.Period) ([]*histogram.HistData, error) {
