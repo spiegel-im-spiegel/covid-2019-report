@@ -29,8 +29,8 @@ github.com/go-latex/latex v0.0.0-20210823091927-c0d11ff05a81 h1:6zl3BbBhdnMkpSj2
 github.com/go-latex/latex v0.0.0-20210823091927-c0d11ff05a81/go.mod h1:SX0U8uGpxhq9o2S/CELCSUxEWWAuoCUcVCQWv7G2OCk=
 github.com/go-pdf/fpdf v0.5.0 h1:GHpcYsiDV2hdo77VTOuTF9k1sN8F8IY7NjnCo9x+NPY=
 github.com/go-pdf/fpdf v0.5.0/go.mod h1:HzcnA+A23uwogo0tp9yU+l3V+KXhiESpt1PMayhOh5M=
-github.com/goark/cov19data v0.6.0 h1:x3j2E4vI4Mtgk6KHH3wrna1uOoGZIHPA/zRRq7mVbQ0=
-github.com/goark/cov19data v0.6.0/go.mod h1:ASu31Ob2N/siFXvxHi3e0dhtPdrYjxX3OcMfS4BUBXI=
+github.com/goark/cov19data v0.6.1 h1:Qk7ZdCe4N7LadJ+5wrz0r+pJt2yU2i1uc5XPtlDuPUc=
+github.com/goark/cov19data v0.6.1/go.mod h1:0TICKPpnpsvA4zLuPC0WQS2CpTy16E3JnQcQHGvaLu8=
 github.com/goark/cov19jpn v0.3.0 h1:di0jfiPAExUmmrCUSq66+KD7BVL+//i+w8UbgUcoqdw=
 github.com/goark/cov19jpn v0.3.0/go.mod h1:zo8rZoOx0zGLzS/Fh4NYEXYzKVR7ulJjiCPEp8jUHDg=
 github.com/goark/csvdata v0.5.0 h1:k5oQXmXdMce6+i6mLytffAa44b22KduCA52A14cXe+4=
