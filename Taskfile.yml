@@ -7,7 +7,7 @@ tasks:
       - task: build-all
 
   build-all:
-    deps: [build-who, get-global-data, build-google-forecast, build-matsue]
+    deps: [build-who, get-global-data, build-google-forecast]
 
   build-who:
     desc: Build chart from WHO COVID-19 global data.
