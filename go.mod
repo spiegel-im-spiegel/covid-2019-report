@@ -4,7 +4,6 @@ go 1.19
 
 require (
 	github.com/goark/cov19data v0.6.3
-	github.com/goark/cov19jpn v0.3.2
 	github.com/goark/csvdata v0.6.0
 	github.com/goark/errs v1.1.0
 	github.com/goark/fetch v0.3.0

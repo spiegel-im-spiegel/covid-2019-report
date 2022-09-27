@@ -4,7 +4,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/goark/cov19jpn/values/date"
+	"github.com/goark/cov19data/values"
 	"github.com/goark/errs"
 
 	"github.com/goark/csvdata"
@@ -14,7 +14,7 @@ import (
 type Infection struct {
 	NodeMatsue  string
 	NodeShimane string
-	Date        date.Date
+	Date        values.Date
 	InsideFlag  bool
 	FromInside  []string
 	FromOutside []string
@@ -40,10 +40,14 @@ func NewInfections(path, sheetName string) ([]*Infection, error) {
 			}
 			return infections, errs.Wrap(err)
 		}
+		dt, err := values.NewDateString(rows.Get(2))
+		if err != nil {
+			return infections, errs.Wrap(err)
+		}
 		i := &Infection{
 			NodeMatsue:  "m" + rows.Get(0),
 			NodeShimane: "s" + rows.Get(1),
-			Date:        date.FromString(rows.Get(2)),
+			Date:        dt,
 			InsideFlag:  false,
 			FromInside:  []string{},
 			FromOutside: []string{},
@@ -66,7 +70,7 @@ func NewInfections(path, sheetName string) ([]*Infection, error) {
 	return infections, nil
 }
 
-/* Copyright 2021 Spiegel
+/* Copyright 2021-2022 Spiegel
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

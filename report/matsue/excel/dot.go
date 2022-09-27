@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+	"time"
 
-	"github.com/goark/cov19jpn/values/date"
+	"github.com/goark/cov19data/values"
 )
 
 const (
@@ -28,13 +29,15 @@ const (
 	footer = "}"
 )
 
-func ConvDot(infections []*Infection, start, end date.Date) (string, error) {
+var ZeroTime = values.NewDateTime(time.Time{})
+
+func ConvDot(infections []*Infection, start, end values.Date) (string, error) {
 	if len(infections) == 0 {
 		return "", nil
 	}
 	if !start.IsZero() {
 		if start.Before(infections[0].Date) {
-			start = date.Zero
+			start = ZeroTime
 		}
 		if !end.IsZero() && start.After(end) {
 			end = start
@@ -43,7 +46,7 @@ func ConvDot(infections []*Infection, start, end date.Date) (string, error) {
 	lastDay := infections[len(infections)-1].Date
 	if !end.IsZero() {
 		if end.After(lastDay) {
-			end = date.Zero
+			end = ZeroTime
 		} else if end.Before(lastDay) {
 			lastDay = end
 		}
@@ -96,7 +99,7 @@ func ConvDot(infections []*Infection, start, end date.Date) (string, error) {
 	return bldr.String(), nil
 }
 
-/* Copyright 2021 Spiegel
+/* Copyright 2021-2022 Spiegel
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
