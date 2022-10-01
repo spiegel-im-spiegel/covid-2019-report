@@ -3,8 +3,8 @@ module github.com/spiegel-im-spiegel/covid-2019-report
 go 1.19
 
 require (
-	github.com/goark/cov19data v0.6.3
-	github.com/goark/csvdata v0.6.0
+	github.com/goark/cov19data v0.6.4
+	github.com/goark/csvdata v0.7.0
 	github.com/goark/errs v1.1.0
 	github.com/goark/fetch v0.3.0
 	gonum.org/v1/plot v0.12.0
