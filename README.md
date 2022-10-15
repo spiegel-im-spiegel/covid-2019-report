@@ -29,6 +29,8 @@ WHO がパンデミック宣言を行った 2020-03-11 以降における国内�
 
 東京都のデータは PCR 検査を行って陽性反応が出た人をカウントしているだけで WHO のデータとの整合性は考慮してません。あくまでも参考程度と考えてください。
 
+**【2022-10-15 追記】** 東京都は陽性者の公表を 2022-09-26 を以って止めたようです。データが取得できなくなりましたのでグラフから外しました。
+
 ## COVID-2019 関連のリンク集
 
 - [Coronavirus Disease (COVID-19) Situation Reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports) : Situation Reports 週単位の報告（PDF）になった模様

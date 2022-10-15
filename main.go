@@ -26,11 +26,11 @@ func makeGraph(from, to values.Date, histCasesFile, histDeathsFile string) error
 	if err != nil {
 		return errs.Wrap(err)
 	}
-	tokyo, err := getTokyoHist(p)
-	if err != nil {
-		return errs.Wrap(err)
-	}
-	histChart := chart.ImportHistgramData(global, tokyo)
+	// tokyo, err := getTokyoHist(p)
+	// if err != nil {
+	// 	return errs.Wrap(err)
+	// }
+	histChart := chart.ImportHistgramData(global)
 
 	if len(histCasesFile) > 0 {
 		if err := chart.BarChartHistCases(histChart, histCasesFile); err != nil {
@@ -66,7 +66,7 @@ func main() {
 	}
 }
 
-/* Copyright 2020-2021 Spiegel
+/* Copyright 2020-2022 Spiegel
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
