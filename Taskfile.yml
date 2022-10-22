@@ -18,7 +18,6 @@ tasks:
     desc: Get CSV files; WHO COVID-19 global data and Tokyo patients data.
     dir: report/
     cmds:
-      - curl -L -sS "https://stopcovid19.metro.tokyo.lg.jp/data/130001_tokyo_covid19_patients.csv" | gnkf nl -n lf -o ./tokyo/130001_tokyo_covid19_patients.csv
       - curl -L -sS "https://covid19.who.int/WHO-COVID-19-global-data.csv" -o WHO-COVID-19-global-data.csv
       - cat WHO-COVID-19-global-data.csv | jvgrep Japan > WHO-COVID-19-japan-data.csv || exit 0
 
