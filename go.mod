@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/goark/cov19data v0.6.4
-	github.com/goark/csvdata v0.7.0
+	github.com/goark/csvdata v0.7.1
 	github.com/goark/errs v1.1.0
 	github.com/goark/fetch v0.3.0
 	gonum.org/v1/plot v0.12.0
@@ -23,8 +23,8 @@ require (
 	github.com/xuri/efp v0.0.0-20220603152613-6918739fd470 // indirect
 	github.com/xuri/excelize/v2 v2.6.1 // indirect
 	github.com/xuri/nfp v0.0.0-20220409054826-5e722a1d9e22 // indirect
-	golang.org/x/crypto v0.0.0-20220817201139-bc19a97f63c8 // indirect
+	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/image v0.0.0-20220902085622-e7cb96979f69 // indirect
-	golang.org/x/net v0.0.0-20220812174116-3211cb980234 // indirect
-	golang.org/x/text v0.3.8 // indirect
+	golang.org/x/net v0.2.0 // indirect
+	golang.org/x/text v0.4.0 // indirect
 )
