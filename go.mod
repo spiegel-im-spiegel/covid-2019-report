@@ -3,8 +3,8 @@ module github.com/spiegel-im-spiegel/covid-2019-report
 go 1.19
 
 require (
-	github.com/goark/cov19data v0.6.4
-	github.com/goark/csvdata v0.7.1
+	github.com/goark/cov19data v0.6.5
+	github.com/goark/csvdata v0.7.2
 	github.com/goark/errs v1.1.0
 	github.com/goark/fetch v0.3.0
 	gonum.org/v1/plot v0.12.0
@@ -21,10 +21,10 @@ require (
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.3 // indirect
 	github.com/xuri/efp v0.0.0-20220603152613-6918739fd470 // indirect
-	github.com/xuri/excelize/v2 v2.6.1 // indirect
+	github.com/xuri/excelize/v2 v2.7.0 // indirect
 	github.com/xuri/nfp v0.0.0-20220409054826-5e722a1d9e22 // indirect
-	golang.org/x/crypto v0.1.0 // indirect
+	golang.org/x/crypto v0.5.0 // indirect
 	golang.org/x/image v0.0.0-20220902085622-e7cb96979f69 // indirect
-	golang.org/x/net v0.4.0 // indirect
-	golang.org/x/text v0.5.0 // indirect
+	golang.org/x/net v0.5.0 // indirect
+	golang.org/x/text v0.6.0 // indirect
 )
