@@ -36,9 +36,13 @@ tasks:
 
   test-all:
     cmds:
-      - task: clean
+      - task: prepare
       - task: test
       - task: graph
+
+  prepare:
+    cmds:
+      - go mod tidy -v -go=1.20
 
   test:
     desc: Update modules, check vulns, test, and lint.
@@ -46,7 +50,7 @@ tasks:
       - go mod verify
       - depm list -j | nancy sleuth -n
       - go test -shuffle on ./...
-      - docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.50.1 golangci-lint run --enable gosec --timeout 3m0s ./...
+      - docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.51.1 golangci-lint run --enable gosec --timeout 3m0s ./...
     sources:
       - ./go.mod
       - '**/*.go'
@@ -57,8 +61,6 @@ tasks:
       - rm -f ./go.sum
       - go clean -cache
       - go clean -modcache
-      - go mod verify
-      - go mod tidy -v -go=1.19
 
   graph:
     desc: Make grapth of dependency modules.
