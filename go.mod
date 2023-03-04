@@ -6,7 +6,7 @@ require (
 	github.com/goark/cov19data v0.6.6
 	github.com/goark/csvdata v0.7.3
 	github.com/goark/errs v1.2.2
-	github.com/goark/fetch v0.3.0
+	github.com/goark/fetch v0.4.0
 	gonum.org/v1/plot v0.12.0
 )
 
