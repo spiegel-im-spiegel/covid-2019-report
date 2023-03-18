@@ -46,7 +46,7 @@ func makeGraph(from, to values.Date, histCasesFile, histDeathsFile string) error
 }
 
 func main() {
-	lastDay := values.Yesterday()
+	lastDay := values.Today().AddDay(-8)
 	if err := makeGraph(values.NewDate(2020, time.Month(3), 11), lastDay, HistCasesFile, HistDeathsFile); err != nil {
 		fmt.Fprintf(os.Stderr, "%+v\n", err)
 		return
